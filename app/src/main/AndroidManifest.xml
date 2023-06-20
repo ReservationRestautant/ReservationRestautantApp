@@ -13,6 +13,12 @@
         android:theme="@style/Theme.ReservationRestautantApp"
         tools:targetApi="31">
         <activity
+            android:name=".BookingFail"
+            android:exported="false" />
+        <activity
+            android:name=".BookingSuccess"
+            android:exported="false" />
+        <activity
             android:name=".Booking2"
             android:exported="false" />
         <activity
