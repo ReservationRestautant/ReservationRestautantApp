@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,188 +8,193 @@
     android:background="@color/white"
     tools:context=".RegisterActivity">
 
-  <TextView
-      android:id="@+id/registerTextView1"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginLeft="50dp"
-      android:text="Register"
-      android:textColor="@color/green_light_forest"
-      android:textSize="25dp"
-      android:textStyle="bold"
-      android:layout_alignParentTop = "true"
-      android:layout_marginTop="60dp"
-      />
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/registerTextView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:text="Register"
+        android:textColor="@color/green_light_forest"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:layout_alignParentTop = "true"
+        android:layout_marginTop="60dp"
+        />
 
-  <TextView
-      android:id="@+id/registerTextView2"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_below="@+id/registerTextView1"
-      android:layout_marginLeft="50dp"
-      android:layout_marginTop="25dp"
-      android:text="The basics"
-      android:textSize="25dp"
-      android:textStyle="bold"
-      android:textColor="@color/black"/>
+    <TextView
+        android:id="@+id/registerTextView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/registerTextView1"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="25dp"
+        android:text="The basics"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
 
-  <TextView
-      android:id="@+id/registerTextView3"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_below="@id/registerTextView2"
-      android:layout_marginLeft="50dp"
-      android:layout_marginTop="10dp"
-      android:text="Let's start with the basics. Note: you"
-      android:textAlignment="center"
-      android:textSize="19dp"
-      android:textColor="#858484"/>
+    <TextView
+        android:id="@+id/registerTextView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/registerTextView2"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="10dp"
+        android:text="Let's start with the basics. Note: you"
+        android:textAlignment="center"
+        android:textSize="19dp"
+        android:textColor="#858484"/>
 
-  <TextView
-      android:id="@+id/registerTextView4"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginLeft="50dp"
-      android:text="can change these details later"
-      android:textAlignment="center"
-      android:textSize="19dp"
-      android:layout_below="@id/registerTextView3"
-      android:textColor="#858484"/>
+    <TextView
+        android:id="@+id/registerTextView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:text="can change these details later"
+        android:textAlignment="center"
+        android:textSize="19dp"
+        android:layout_below="@id/registerTextView3"
+        android:textColor="#858484"/>
 
-  <TextView
-      android:id="@+id/registerTextView5"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginLeft="50dp"
-      android:layout_marginTop="30dp"
-      android:text="Full Name"
-      android:textAlignment="center"
-      android:textSize="19dp"
-      android:layout_below="@+id/registerTextView4"
-      android:textColor="#858484"/>
+    <TextView
+        android:id="@+id/registerTextView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="30dp"
+        android:text="Full Name"
+        android:textAlignment="center"
+        android:textSize="19dp"
+        android:layout_below="@+id/registerTextView4"
+        android:textColor="#858484"/>
 
-  <EditText
-      android:id="@+id/editTextFullName"
-      android:layout_width="325dp"
-      android:layout_height="60dp"
-      android:layout_marginLeft="50dp"
-      android:layout_marginTop="10dp"
-      android:hint="Your full name"
-      android:textSize="19dp"
-      android:textColor="@color/black"
-      android:background="@drawable/inputtext_bg"
-      android:paddingLeft="20dp"
-      android:layout_below="@+id/registerTextView5"/>
+    <EditText
+        android:id="@+id/editTextFullName"
+        android:layout_width="325dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="10dp"
+        android:hint="Your full name"
+        android:textSize="19dp"
+        android:textColor="@color/black"
+        android:background="@drawable/inputtext_bg"
+        android:paddingLeft="20dp"
+        android:layout_below="@+id/registerTextView5"/>
 
-  <TextView
-      android:id="@+id/registerTextView6"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginLeft="50dp"
-      android:layout_marginTop="10dp"
-      android:text="Email Address"
-      android:textAlignment="center"
-      android:textSize="19dp"
-      android:layout_below="@+id/editTextFullName"
-      android:textColor="#858484"/>
+    <TextView
+        android:id="@+id/registerTextView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="10dp"
+        android:text="Phone"
+        android:textAlignment="center"
+        android:textSize="19dp"
+        android:layout_below="@+id/editTextFullName"
+        android:textColor="#858484"/>
 
-  <EditText
-      android:id="@+id/editTextEmail"
-      android:layout_width="325dp"
-      android:layout_height="60dp"
-      android:layout_marginLeft="50dp"
-      android:layout_marginTop="10dp"
-      android:hint="Your Email Address"
-      android:textSize="19dp"
-      android:textColor="@color/black"
-      android:background="@drawable/inputtext_bg"
-      android:paddingLeft="20dp"
-      android:layout_below="@+id/registerTextView6"/>
+    <EditText
+        android:id="@+id/editTextEmail"
+        android:layout_width="325dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="10dp"
+        android:hint="Your Phone"
+        android:textSize="19dp"
+        android:textColor="@color/black"
+        android:background="@drawable/inputtext_bg"
+        android:paddingLeft="20dp"
+        android:layout_below="@+id/registerTextView6"/>
 
-  <TextView
-      android:id="@+id/registerTextView7"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginLeft="50dp"
-      android:layout_marginTop="10dp"
-      android:text="Password"
-      android:textAlignment="center"
-      android:textSize="19dp"
-      android:layout_below="@+id/editTextEmail"
-      android:textColor="#858484"/>
+    <TextView
+        android:id="@+id/registerTextView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="10dp"
+        android:text="Password"
+        android:textAlignment="center"
+        android:textSize="19dp"
+        android:layout_below="@+id/editTextEmail"
+        android:textColor="#858484"/>
 
-  <EditText
-      android:id="@+id/editTextPassword"
-      android:layout_width="325dp"
-      android:layout_height="60dp"
-      android:layout_marginLeft="50dp"
-      android:layout_marginTop="10dp"
-      android:hint="Your Password"
-      android:inputType="textPassword"
-      android:textSize="19dp"
-      android:textColor="@color/black"
-      android:background="@drawable/inputtext_bg"
-      android:paddingLeft="20dp"
-      android:layout_below="@+id/registerTextView7"/>
+    <EditText
+        android:id="@+id/editTextPassword"
+        android:layout_width="325dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="10dp"
+        android:hint="Your Password"
+        android:inputType="textPassword"
+        android:textSize="19dp"
+        android:textColor="@color/black"
+        android:background="@drawable/inputtext_bg"
+        android:paddingLeft="20dp"
+        android:layout_below="@+id/registerTextView7"/>
 
-  <TextView
-      android:id="@+id/registerTextView8"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginLeft="50dp"
-      android:layout_marginTop="10dp"
-      android:text="Repeat Password"
-      android:textAlignment="center"
-      android:textSize="19dp"
-      android:layout_below="@+id/editTextPassword"
-      android:textColor="#858484"/>
+    <TextView
+        android:id="@+id/registerTextView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="10dp"
+        android:text="Repeat Password"
+        android:textAlignment="center"
+        android:textSize="19dp"
+        android:layout_below="@+id/editTextPassword"
+        android:textColor="#858484"/>
 
-  <EditText
-      android:id="@+id/editTextRePassword"
-      android:layout_width="325dp"
-      android:layout_height="60dp"
-      android:layout_marginLeft="50dp"
-      android:layout_marginTop="10dp"
-      android:hint="Repeat Password"
-      android:inputType="textPassword"
-      android:textSize="19dp"
-      android:textColor="@color/black"
-      android:background="@drawable/inputtext_bg"
-      android:paddingLeft="20dp"
-      android:layout_below="@+id/registerTextView8"/>
+    <EditText
+        android:id="@+id/editTextRePassword"
+        android:layout_width="325dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="10dp"
+        android:hint="Repeat Password"
+        android:inputType="textPassword"
+        android:textSize="19dp"
+        android:textColor="@color/black"
+        android:background="@drawable/inputtext_bg"
+        android:paddingLeft="20dp"
+        android:layout_below="@+id/registerTextView8"/>
 
-  <Button
-      android:id="@+id/registerButton1"
-      android:layout_width="285dp"
-      android:layout_height="77dp"
-      android:layout_below="@id/editTextRePassword"
-      android:layout_centerHorizontal="true"
-      android:layout_marginTop="45dp"
-      android:backgroundTint="@color/aqua_seaweed_green"
-      android:text="Sign Up"
-      android:textSize="24sp" />
+    <Button
+        android:id="@+id/registerButton1"
+        android:layout_width="285dp"
+        android:layout_height="77dp"
+        android:layout_below="@id/editTextRePassword"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp"
+        android:backgroundTint="@color/aqua_seaweed_green"
+        android:text="Sign Up"
+        android:textSize="24sp" />
 
-  <TextView
-      android:id="@+id/registerTextView9"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_centerHorizontal="true"
-      android:layout_marginTop="10dp"
-      android:text="Already Have An Account?"
-      android:textSize="16sp"
-      android:textColor="@color/black"
-      android:layout_below="@id/registerButton1"/>
+    <TextView
+        android:id="@+id/registerTextView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="Already Have An Account?"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:layout_below="@id/registerButton1"/>
 
-  <Button
-      android:id="@+id/loginButton"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_centerHorizontal="true"
-      android:text="Log In"
-      android:textColor="@color/green_light_forest"
-      android:textSize="16sp"
-      android:textStyle="bold"
-      android:layout_below="@id/registerTextView9"
-      android:backgroundTint="@color/white"/>
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Log In"
+        android:textColor="@color/green_light_forest"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_below="@id/registerTextView9"
+        android:backgroundTint="@color/white"/>
+  </RelativeLayout>
 
-</RelativeLayout>
+
+</ScrollView>
