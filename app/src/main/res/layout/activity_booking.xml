@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".Booking">
+
+    <TextView
+        android:id="@+id/Bookingblank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_alignParentTop = "true"
+        android:layout_centerHorizontal = "true"
+        android:layout_marginTop="40dp"/>
+
+    <TextView
+        android:id="@+id/textview1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Bookingblank"
+        android:text="Number people"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="50dp"/>
+
+    <EditText
+        android:id="@+id/numbergest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/textview1"
+        android:layout_below="@+id/Bookingblank"
+        android:hint="num"
+        android:textStyle="bold"
+        android:textSize="25dp"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"/>
+
+    <TextView
+        android:id="@+id/textview2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textview1"
+        android:text="Tody (dd/mm/yyyy)"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="50dp"/>
+
+    <TextView
+        android:id="@+id/textview3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textview2"
+        android:text="Morning"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="50dp"/>
+
+    <Button
+        android:id="@+id/buttonBooking710"
+        android:layout_width="160dp"
+        android:layout_height="77dp"
+        android:layout_below="@id/textview3"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#8BFA70"
+        android:text="7h - 10h"
+        android:textColor="@color/black"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/buttonBooking1013"
+        android:layout_width="160dp"
+        android:layout_height="77dp"
+        android:layout_below="@id/textview3"
+        android:layout_toRightOf="@+id/buttonBooking710"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#8BFA70"
+        android:text="10h - 13h"
+        android:textColor="@color/black"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/textview4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonBooking710"
+        android:text="Afternoon"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="50dp"/>
+
+    <Button
+        android:id="@+id/buttonBooking1316"
+        android:layout_width="160dp"
+        android:layout_height="77dp"
+        android:layout_below="@id/textview4"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#8BFA70"
+        android:text="13h - 16h"
+        android:textColor="@color/black"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/buttonBooking1619"
+        android:layout_width="160dp"
+        android:layout_height="77dp"
+        android:layout_below="@id/textview4"
+        android:layout_toRightOf="@+id/buttonBooking1316"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#8BFA70"
+        android:text="16h - 19h"
+        android:textColor="@color/black"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/textview5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonBooking1316"
+        android:text="Everning"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="50dp"/>
+
+    <Button
+        android:id="@+id/buttonBooking1922"
+        android:layout_width="160dp"
+        android:layout_height="77dp"
+        android:layout_below="@id/textview5"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#8BFA70"
+        android:text="19h - 22h"
+        android:textColor="@color/black"
+        android:textSize="24sp"/>
+
+    <Button
+        android:id="@+id/buttonBooking"
+        android:layout_width="310dp"
+        android:layout_height="77dp"
+        android:layout_below="@id/buttonBooking1922"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="#35BC19"
+        android:text="Booking"
+        android:textSize="24sp"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/bottom_nav"
+        app:menu="@menu/menu_botton_nav"
+        android:layout_alignParentBottom="true"
+        android:background="#ffffff"
+        />
+
+</RelativeLayout>
