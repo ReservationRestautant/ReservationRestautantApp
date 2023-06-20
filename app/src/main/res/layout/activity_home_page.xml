@@ -48,7 +48,7 @@
         android:layout_marginTop="70dp"
         android:backgroundTint="#35BC19"
         android:text="Booking"
-        android:textSize="24sp" />
+        android:textSize="24sp"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
