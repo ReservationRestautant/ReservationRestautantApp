@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".LoginActivity">
+    
+    <ImageView
+        android:id="@+id/loginImgView"
+        android:layout_width="230dp"
+        android:layout_height="253dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        app:srcCompat="@drawable/login_img"/>
+
+    <TextView
+        android:id="@+id/textphone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/loginImgView"
+        android:layout_marginLeft="58dp"
+        android:layout_marginTop="35dp"
+        android:text="Phone"
+        android:textSize="16dp"
+        android:textColor="@color/grey" />
+
+    <EditText
+        android:id="@+id/editTextPhone"
+        android:layout_width="325dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="10dp"
+        android:inputType="textEmailAddress"
+        android:hint="Your Phone"
+        android:textSize="20dp"
+        android:drawableLeft="@drawable/baseline_phone_24"
+        android:background="@drawable/inputtext_bg"
+        android:paddingLeft="20dp"
+        android:layout_below="@+id/textphone"/>
+
+    <TextView
+        android:id="@+id/textpassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editTextPhone"
+        android:layout_marginLeft="61dp"
+        android:layout_marginTop="30dp"
+        android:text="Password"
+        android:textSize="16dp"
+        android:textColor="#858484"/>
+
+    <EditText
+        android:id="@+id/editTextPassword"
+        android:layout_width="325dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="10dp"
+        android:drawableLeft="@drawable/baseline_lock_24"
+        android:inputType="textPassword"
+        android:hint="Your Password"
+        android:textSize="20dp"
+        android:background="@drawable/inputtext_bg"
+        android:paddingLeft="20dp"
+        android:layout_below="@+id/textpassword"/>
+
+    <Button
+        android:id="@+id/forgotpasswordButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editTextPassword"
+        android:layout_marginLeft="216dp"
+        android:text="Forgot Password?"
+        android:textSize="16dp"
+        android:textStyle="italic"
+        android:textColor="#85AB7F"
+        android:backgroundTint="@color/white"/>
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="285dp"
+        android:layout_height="77dp"
+        android:layout_below="@+id/forgotpasswordButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp"
+        android:backgroundTint="@color/aqua_seaweed_green"
+        android:text="Login"
+        android:textSize="24sp"/>
+
+    <TextView
+        android:id="@+id/startedTextView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="Don't have an account?"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:layout_below="@id/loginButton"/>
+
+    <Button
+        android:id="@+id/signupButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Sign Up"
+        android:textColor="#52BC41"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_below="@id/startedTextView5"
+        android:backgroundTint="@color/white"/>
+
+
+</RelativeLayout>
