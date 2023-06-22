@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ReservationRestautantApp</string>
+    <string name="term_policy">By Logging In Or Registering, You Have Agreed To<font color="#32B768">The Terms And\nConditions</font> And<font color="#32B768"> Privacy Policy.</font></string>
 </resources>
