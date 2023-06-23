@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".HomePage">
+
+    <TextView
+        android:id="@+id/OnBoardBlank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_alignParentTop = "true"
+        android:layout_centerHorizontal = "true"
+        android:layout_marginTop="40dp"/>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="272dp"
+        android:layout_height="150dp"
+        android:layout_below="@+id/OnBoardBlank"
+        android:layout_marginStart="68dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/homepage_1"/>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="272dp"
+        android:layout_height="150dp"
+        android:layout_below="@+id/imageView"
+        android:layout_marginStart="68dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/homepage_2"/>
+
+    <Button
+        android:id="@+id/buttonBooking"
+        android:layout_width="285dp"
+        android:layout_height="77dp"
+        android:layout_below="@id/imageView2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:backgroundTint="#35BC19"
+        android:text="Booking"
+        android:textSize="24sp"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/bottom_nav"
+        app:menu="@menu/menu_botton_nav"
+        android:layout_alignParentBottom="true"
+        android:background="#ffffff"
+        />
+
+</RelativeLayout>

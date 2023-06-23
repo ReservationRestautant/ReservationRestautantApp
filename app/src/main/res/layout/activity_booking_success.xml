@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".BookingSuccess">
+
+    <TextView
+        android:id="@+id/Bookingblank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_alignParentTop = "true"
+        android:layout_centerHorizontal = "true"
+        android:layout_marginTop="40dp"/>
+
+    <ImageView
+        android:id="@+id/successimage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Bookingblank"
+        android:src="@drawable/success"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/textview1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/successimage"
+        android:text="Success"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal = "true"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/textview2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textview1"
+        android:text="Staff will call you soon"
+        android:textSize="20sp"
+        android:layout_centerHorizontal = "true"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/textview3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textview2"
+        android:text="to confirm your booking"
+        android:textSize="20sp"
+        android:layout_centerHorizontal = "true"
+        android:layout_marginTop="5dp"/>
+
+    <Button
+        android:id="@+id/buttonBack"
+        android:layout_width="310dp"
+        android:layout_height="77dp"
+        android:layout_below="@id/textview3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"
+        android:backgroundTint="#35BC19"
+        android:text="Back to home"
+        android:textSize="24sp"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/bottom_nav"
+        app:menu="@menu/menu_botton_nav"
+        android:layout_alignParentBottom="true"
+        android:background="#ffffff"
+        />
+
+</RelativeLayout>

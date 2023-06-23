@@ -19,6 +19,27 @@
             android:name=".WelcomeActivity"
             android:exported="false" />
         <activity
+            android:name=".BookingFail"
+            android:exported="false" />
+        <activity
+            android:name=".BookingSuccess"
+            android:exported="false" />
+        <activity
+            android:name=".Booking2"
+            android:exported="false" />
+        <activity
+            android:name=".Booking"
+            android:exported="false" />
+        <activity
+            android:name=".HomePage"
+            android:exported="false" />
+        <activity
+            android:name=".OnBoard2"
+            android:exported="false" />
+        <activity
+            android:name=".OnBoard"
+            android:exported="false" />
+        <activity
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
