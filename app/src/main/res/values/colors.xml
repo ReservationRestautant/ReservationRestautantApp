@@ -6,4 +6,6 @@
     <color name="green_light_forest">#91C789</color>
     <color name="white_grey">#F4F9F3</color>
     <color name="grey">#828682</color>
+    <color name="grey_blur">#4B5563</color>
+    <color name="inside_cucumber_green">#D1FAE5</color>
 </resources>

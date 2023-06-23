@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WelcomeActivity">
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        
+        <ImageView
+            android:id="@+id/welcomeImgView"
+            android:layout_width="280dp"
+            android:layout_height="230dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="100dp"
+            app:srcCompat="@drawable/welcome_img">
+        </ImageView>
+
+        <TextView
+            android:id="@+id/welcomeText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Welcome"
+            android:layout_below="@+id/welcomeImgView"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="60dp"
+            android:textStyle="bold"
+            android:textSize="30dp"/>
+
+        <TextView
+            android:id="@+id/welcomeNoteText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Before Making A Reservation,\nPlease Choose One Of The Following \nMethods To Continue"
+            android:layout_below="@+id/welcomeText"
+            android:gravity="center_horizontal"
+            android:textColor="@color/grey_blur"
+            android:layout_marginTop="10dp"/>
+
+        <Button
+            android:id="@+id/createAccountButton"
+            android:layout_width="256dp"
+            android:layout_height="65dp"
+            android:layout_below="@+id/welcomeNoteText"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/aqua_seaweed_green"
+            android:text="Create Account"
+            android:textSize="15dp"
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_width="256dp"
+            android:layout_height="65dp"
+            android:layout_below="@+id/createAccountButton"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/inside_cucumber_green"
+            android:text="Login"
+            android:textColor="@color/aqua_seaweed_green"
+            android:textSize="15dp"
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/guestButton"
+            android:layout_width="256dp"
+            android:layout_height="65dp"
+            android:layout_below="@+id/loginButton"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/inside_cucumber_green"
+            android:text="Guest"
+            android:textColor="@color/aqua_seaweed_green"
+            android:textSize="15dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/termPolicyText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/term_policy"
+            android:layout_below="@+id/guestButton"
+            android:layout_marginTop="30dp"
+            android:gravity="center_horizontal"
+            android:textSize="10dp"/>
+
+        
+    </RelativeLayout>
+
+</ScrollView>
