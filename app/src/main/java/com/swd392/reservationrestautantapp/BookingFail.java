@@ -21,6 +21,8 @@ public class BookingFail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booking_fail);
 
+        setupNavBottom();
+
         // button back to home page
         Button btnback = findViewById(R.id.buttonBack);
 
