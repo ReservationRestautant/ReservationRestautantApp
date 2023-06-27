@@ -16,6 +16,23 @@
             android:name=".History"
             android:exported="false" />
         <activity
+            android:name=".EditProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
+      <activity
+            android:name=".BookingDetailUser"
+            android:exported="true" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+        <activity
             android:name=".GuestInfoActivity"
             android:exported="false" />
         <activity
@@ -53,12 +70,8 @@
             android:exported="false" />
         <activity
             android:name=".ForgotPassword"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="false">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".MainActivity"
