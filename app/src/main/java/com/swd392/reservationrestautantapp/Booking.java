@@ -22,6 +22,8 @@ public class Booking extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booking);
 
+        setupNavBottom();
+
         // num of guest
         EditText num_guest = findViewById(R.id.numbergest);
 

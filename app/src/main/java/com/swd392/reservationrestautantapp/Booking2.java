@@ -22,6 +22,8 @@ public class Booking2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booking2);
 
+        setupNavBottom();
+
         // number guest pay for table
         EditText numdeposit = findViewById(R.id.numdeposit);
 

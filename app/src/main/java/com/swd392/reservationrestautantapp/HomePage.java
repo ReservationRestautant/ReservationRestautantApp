@@ -21,6 +21,8 @@ public class HomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
+        setupNavBottom();
+
         // Button booking
         Button btnbook = findViewById(R.id.buttonBooking);
 
