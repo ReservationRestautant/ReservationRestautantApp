@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".Payment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            
+            <ImageView
+                android:layout_width="225dp"
+                android:layout_height="225dp"
+                android:src="@drawable/bank_qr_code"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="100dp"></ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Payment"
+                android:textColor="#374151"
+                android:textSize="24dp"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Stop here to pay for booking"
+                android:textColor="#374151"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="You have 15 minutes from now to "
+                android:textColor="#C81D1D"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="pay for booking"
+                android:textColor="#C81D1D"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                />
+
+            <LinearLayout
+                android:layout_width="259dp"
+                android:layout_height="85dp"
+                android:background="@drawable/box_border_stroke"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/moneypay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Money to pay: 1.000.000 vnđ"
+                    android:textColor="#32B768"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Syntax: [YOUR PHONE]"
+                    android:textColor="#32B768"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_horizontal"
+                    />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ex Syntax: 0971***708"
+                android:textColor="#32B768"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="After 15 minutes, Not pay for"
+                android:textColor="#C81D1D"
+                android:textSize="16dp"
+                android:textStyle="normal"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="booking -> your boking is cancel or"
+                android:textColor="#C81D1D"
+                android:textSize="16dp"
+                android:textStyle="normal"
+                android:layout_gravity="center_horizontal"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="delete"
+                android:textColor="#C81D1D"
+                android:textSize="16dp"
+                android:textStyle="normal"
+                android:layout_gravity="center_horizontal"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Some problem -> contact"
+                android:textColor="#1D2EC8"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0976746524"
+                android:textColor="#1D2EC8"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                />
+
+            <Button
+                android:id="@+id/buttonDone"
+                android:layout_width="256dp"
+                android:layout_height="49dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="#32B768"
+                android:text="Done"
+                android:textSize="14sp"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
