@@ -25,7 +25,8 @@ public class BookingDetailUser extends AppCompatActivity {
         
         findbyIdEle();
 
-        //get reservation
+        //get reservation from api
+        //test fake data
         Reservation reservation =new Reservation();
         reservation.setStartTime(new Time(7, 0, 0));
         reservation.setEndTime(new Time(10, 0, 0));
@@ -46,6 +47,7 @@ public class BookingDetailUser extends AppCompatActivity {
         userSystem.setPhone("0984736526");
         reservation.setUserSysterm(userSystem);
 
+        //set data to screen
         tvphoneUser.setText(reservation.getUserSysterm().getPhone());
         tvnameUser.setText(reservation.getUserSysterm().getName());
         tvPeople.setText(reservation.getNumber_guest() + "");
