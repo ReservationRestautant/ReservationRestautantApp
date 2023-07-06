@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
@@ -17,9 +18,9 @@ public class ProfileActivity extends AppCompatActivity {
 
     ImageView profileimg;
 
-    Text profilename;
+    TextView profilename;
 
-    @SuppressLint("WrongViewCast")
+    //@SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,14 +45,16 @@ public class ProfileActivity extends AppCompatActivity {
         historybtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(ProfileActivity.this,History.class);
+                startActivity(intent);
             }
         });
 
         logoutbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(ProfileActivity.this,WelcomeActivity.class);
+                startActivity(intent);
             }
         });
 

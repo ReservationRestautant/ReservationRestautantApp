@@ -2,6 +2,7 @@ package com.swd392.reservationrestautantapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -25,7 +26,8 @@ public class GuestInfoActivity extends AppCompatActivity {
         conGuest_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(GuestInfoActivity.this,HomePage.class);
+                startActivity(intent);
             }
         });
     }

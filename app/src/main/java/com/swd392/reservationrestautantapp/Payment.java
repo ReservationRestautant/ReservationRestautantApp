@@ -32,6 +32,7 @@ public class Payment extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent1 = new Intent(Payment.this, BookingSuccess.class);
+//                Intent intent1 = new Intent(Payment.this, BookingFail.class);
                 startActivity(intent1);
             }
         });

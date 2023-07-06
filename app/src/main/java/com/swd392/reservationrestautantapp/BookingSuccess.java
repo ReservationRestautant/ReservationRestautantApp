@@ -21,7 +21,7 @@ public class BookingSuccess extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booking_success);
 
-        setupNavBottom();
+//        setupNavBottom();
 
         // button back to home page
         Button btnback = findViewById(R.id.buttonBack);
@@ -36,23 +36,23 @@ public class BookingSuccess extends AppCompatActivity {
         });
     }
 
-    private void setupNavBottom() {
-        btv = findViewById(R.id.bottom_nav);
-        btv.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if(item.getItemId() == R.id.ac_home){
-                    System.out.println("btv_home_page");
-                    startActivity(new Intent(BookingSuccess.this, HomePage.class));
-                } else if(item.getItemId() == R.id.ac_history){
-                    //System.out.println("btv_ac_search_click");
-                    //startActivity(new Intent(HomePage.this, [...].class));
-                }else if(item.getItemId() == R.id.ac_user) {
-                    //System.out.println("btv_ac_favorite_click");
-                    //startActivity(new Intent(HomePage.this, [...].class));
-                }
-                return true;
-            }
-        });
-    }
+//    private void setupNavBottom() {
+//        btv = findViewById(R.id.bottom_nav);
+//        btv.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//                if(item.getItemId() == R.id.ac_home){
+//                    System.out.println("btv_home_page");
+//                    startActivity(new Intent(BookingSuccess.this, HomePage.class));
+//                } else if(item.getItemId() == R.id.ac_history){
+//                    //System.out.println("btv_ac_search_click");
+//                    //startActivity(new Intent(HomePage.this, [...].class));
+//                }else if(item.getItemId() == R.id.ac_user) {
+//                    //System.out.println("btv_ac_favorite_click");
+//                    //startActivity(new Intent(HomePage.this, [...].class));
+//                }
+//                return true;
+//            }
+//        });
+//    }
 }

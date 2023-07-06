@@ -37,8 +37,8 @@ public class Booking2 extends AppCompatActivity {
         btnbooking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(Booking2.this, [...].class);
-                //startActivity(intent);
+                Intent intent = new Intent(Booking2.this, Payment.class);
+                startActivity(intent);
             }
         });
 
@@ -56,8 +56,8 @@ public class Booking2 extends AppCompatActivity {
                     //System.out.println("btv_ac_search_click");
                     //startActivity(new Intent(HomePage.this, [...].class));
                 }else if(item.getItemId() == R.id.ac_user) {
-                    //System.out.println("btv_ac_favorite_click");
-                    //startActivity(new Intent(HomePage.this, [...].class));
+                    System.out.println("btv_ac_favorite_click");
+                    startActivity(new Intent(Booking2.this, ProfileActivity.class));
                 }
                 return true;
             }

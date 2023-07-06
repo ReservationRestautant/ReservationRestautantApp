@@ -83,7 +83,7 @@ public class History extends AppCompatActivity {
                 } else if(item.getItemId() == R.id.ac_history){
                     startActivity(new Intent(History.this, History.class));
                 }else if(item.getItemId() == R.id.ac_user) {
-                    //startActivity(new Intent(History.this, [...].class));
+                    startActivity(new Intent(History.this, ProfileActivity.class));
                 }
                 return true;
             }

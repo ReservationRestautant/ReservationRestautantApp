@@ -60,7 +60,7 @@
         android:layout_below="@id/OnBoard2TextView2"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="60dp"
-        android:backgroundTint="#4CDA2E"
+        android:backgroundTint="#32B768"
         android:text="Get Started"
         android:textSize="24sp" />
 

@@ -21,21 +21,19 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="272dp"
-        android:layout_height="150dp"
+        android:layout_width="338dp"
+        android:layout_height="182dp"
         android:layout_below="@+id/OnBoardBlank"
-        android:layout_marginStart="68dp"
-        android:layout_marginLeft="70dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
         android:src="@drawable/homepage_1"/>
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="272dp"
-        android:layout_height="150dp"
+        android:layout_width="338dp"
+        android:layout_height="182dp"
         android:layout_below="@+id/imageView"
-        android:layout_marginStart="68dp"
-        android:layout_marginLeft="70dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:src="@drawable/homepage_2"/>
 
@@ -46,7 +44,7 @@
         android:layout_below="@id/imageView2"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="70dp"
-        android:backgroundTint="#35BC19"
+        android:backgroundTint="#32B768"
         android:text="Booking"
         android:textSize="24sp"/>
 

@@ -29,7 +29,7 @@ public class ForgotPassword2 extends AppCompatActivity {
         BackToLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //startActivity(new Intent(ForgotPassword2.class, Login.class));
+                startActivity(new Intent(ForgotPassword2.this, LoginActivity.class));
             }
         });
     }

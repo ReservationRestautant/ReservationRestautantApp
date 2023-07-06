@@ -30,8 +30,8 @@ public class HomePage extends AppCompatActivity {
         btnbook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(HomePage.this, [...].class);
-                //startActivity(intent);
+                Intent intent = new Intent(HomePage.this, Booking.class);
+                startActivity(intent);
             }
         });
 
@@ -49,8 +49,8 @@ public class HomePage extends AppCompatActivity {
                     //System.out.println("btv_ac_search_click");
                     //startActivity(new Intent(HomePage.this, [...].class));
                 }else if(item.getItemId() == R.id.ac_user) {
-                    //System.out.println("btv_ac_favorite_click");
-                    //startActivity(new Intent(HomePage.this, [...].class));
+                    System.out.println("btv_ac_favorite_click");
+                    startActivity(new Intent(HomePage.this, ProfileActivity.class));
                 }
                 return true;
             }

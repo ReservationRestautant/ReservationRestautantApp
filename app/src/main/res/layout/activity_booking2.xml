@@ -72,7 +72,7 @@
         android:layout_below="@id/usernote"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
-        android:backgroundTint="#35BC19"
+        android:backgroundTint="#32B768"
         android:text="Booking"
         android:textSize="24sp"/>
 

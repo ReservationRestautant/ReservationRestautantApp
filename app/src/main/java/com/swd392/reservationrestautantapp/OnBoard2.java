@@ -21,8 +21,8 @@ public class OnBoard2 extends AppCompatActivity {
         btnob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(OnBoard2.this, [...].class);
-                //startActivity(intent);
+                Intent intent = new Intent(OnBoard2.this, WelcomeActivity.class);
+                startActivity(intent);
             }
         });
 
