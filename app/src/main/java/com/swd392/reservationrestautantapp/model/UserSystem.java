@@ -75,4 +75,17 @@ public class UserSystem {
     public void setReservations(List<Reservation> reservations) {
         this.reservations = reservations;
     }
+
+    @Override
+    public String toString() {
+        return "UserSystem{" +
+                "id=" + id +
+                ", phone='" + phone + '\'' +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", role=" + role +
+                ", status=" + status +
+                ", reservations=" + reservations +
+                '}';
+    }
 }
