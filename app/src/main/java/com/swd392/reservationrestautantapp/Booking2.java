@@ -15,10 +15,16 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.swd392.reservationrestautantapp.ApiService.ApiService;
 import com.swd392.reservationrestautantapp.model.ReservationDTO;
+import com.swd392.reservationrestautantapp.model.ResponseObject;
 
 import java.sql.Date;
 import java.sql.Time;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Booking2 extends AppCompatActivity {
 
@@ -74,7 +80,7 @@ public class Booking2 extends AppCompatActivity {
                 //test fake data phone
                 phonecus = "0000000000";
 //                phonecus = "0971724708";
-                phoneguest = "0971724708";
+                phoneguest = "0971799999";
                 //end test fake data phone
 
                 try {
@@ -86,9 +92,9 @@ public class Booking2 extends AppCompatActivity {
                 ReservationDTO reservationDTO = new ReservationDTO();
                 //set data reservation
                 reservationDTO.setDescription(desciption);
-                reservationDTO.setDate(Date.valueOf(date));
-                reservationDTO.setStartTime(start);
-                reservationDTO.setEndTime(end);
+                reservationDTO.setDate(Date.valueOf(date).toString());
+                reservationDTO.setStartTime(start.toString());
+                reservationDTO.setEndTime(end.toString());
                 reservationDTO.setNumber_guest(Integer.parseInt(numbergueststr));
                 //set phone
                 if(phonecus.equals("0000000000")){
@@ -102,9 +108,38 @@ public class Booking2 extends AppCompatActivity {
                 Log.e("BOOKING_INFO", "reservationDTO: " + reservationDTO.toString());
 
                 //call api ở đây
+                ApiService.apiService.booking(reservationDTO).enqueue(new Callback<ResponseObject<Object>>() {
+                    @Override
+                    public void onResponse(Call<ResponseObject<Object>> call, Response<ResponseObject<Object>> response) {
+                        if(response.body().getStatus().equals("success")){
+                            Toast.makeText(Booking2.this, "booking success", Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(Booking2.this, Payment.class);
+                            intent.putExtra("MONEYPAY", priceNeed + "");
+                            startActivity(intent);
+                        }else if(response.body().getStatus().equals("fail")){
+                            String data = "";
+                            String rsfail = "";
+                            //Toast.makeText(Booking2.this, response.body().getMessage() + " " + data, Toast.LENGTH_LONG).show();
 
-                Intent intent = new Intent(Booking2.this, Payment.class);
-                startActivity(intent);
+                            Intent intent = new Intent(Booking2.this, BookingFail.class);
+                            if(response.body().getData() != null) {
+                                data += response.body().getData();
+                                rsfail = data;
+                            }else {
+                                rsfail = response.body().getMessage();
+                            }
+                            intent.putExtra("RESULT_FAIL", rsfail);
+                            startActivity(intent);
+                        }else{
+                            Toast.makeText(Booking2.this, "Some error, try again", Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseObject<Object>> call, Throwable t) {
+                        Toast.makeText(Booking2.this, "Some error, can not booking", Toast.LENGTH_LONG).show();
+                    }
+                });
             }
         });
 

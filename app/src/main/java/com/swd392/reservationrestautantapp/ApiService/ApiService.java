@@ -2,6 +2,7 @@ package com.swd392.reservationrestautantapp.ApiService;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.swd392.reservationrestautantapp.model.ReservationDTO;
 import com.swd392.reservationrestautantapp.model.ResponseObject;
 import com.swd392.reservationrestautantapp.model.UserSystem;
 
@@ -13,7 +14,9 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 
 public interface ApiService {
     //ghi log req and response bằng okhttp3 - ở dưới có hướng dẫn add gradle
@@ -38,4 +41,7 @@ public interface ApiService {
 
     @GET("api/Customer")
     Call<ResponseObject<List<UserSystem>>> getAllUser();
+
+    @POST("api/Reservation?discount=0")
+    Call<ResponseObject<Object>> booking(@Body ReservationDTO reservationDTO);
 }

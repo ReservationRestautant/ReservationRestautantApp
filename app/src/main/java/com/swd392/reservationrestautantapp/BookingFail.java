@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -15,7 +16,7 @@ public class BookingFail extends AppCompatActivity {
 
     // menu
     BottomNavigationView btv;
-
+    TextView textview3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +26,10 @@ public class BookingFail extends AppCompatActivity {
 
         // button back to home page
         Button btnback = findViewById(R.id.buttonBack);
+        textview3 = findViewById(R.id.textview3);
+
+        Intent intent = getIntent();
+        textview3.setText(intent.getStringExtra("RESULT_FAIL"));
 
         // switch to home activity
         btnback.setOnClickListener(new View.OnClickListener() {
