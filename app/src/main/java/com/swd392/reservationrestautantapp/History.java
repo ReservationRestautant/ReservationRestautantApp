@@ -6,13 +6,17 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.swd392.reservationrestautantapp.ApiService.ApiService;
+import com.swd392.reservationrestautantapp.adapter.HistoryAdapter;
 import com.swd392.reservationrestautantapp.model.Reservation;
 import com.swd392.reservationrestautantapp.model.ResponseObject;
 
@@ -35,8 +39,6 @@ public class History extends AppCompatActivity {
     List<Reservation> list;
 
     // Uid of current user by Shared Preferences
-
-    //SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
     int Uid = 0; /*getResources().getInteger(R.integer.[ Uid of current user ]);*/
 
     @Override
@@ -44,13 +46,32 @@ public class History extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
 
+        // get current user id via sharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("MY_APP", Context.MODE_PRIVATE);	//"MY_APP": chỉ là cái tên của Shared preference;
+        Uid = sharedPreferences.getInt("Key_User", 0);
+
         // set up bottom menu
         setupNavBottom();
 
         // call api to get list of reservation by id of current user
         callApiGetListReservation(Uid);
 
-        setUpRecyclerView();
+        // setup recycler view
+        rcv = findViewById(R.id.rcv_History);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 1);   //dạng cột và có 1 cột
+        rcv.setLayoutManager(gridLayoutManager);
+
+        HistoryAdapter historyadapter = new HistoryAdapter(list, this);
+        rcv.setAdapter(historyadapter);
+
+        //set up search icon click
+        ImageView iconSearch = findViewById(R.id.iconSearch);
+        iconSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // some method
+            }
+        });
 
     }
 
@@ -73,25 +94,6 @@ public class History extends AppCompatActivity {
             }
         });
     }
-
-    private void setUpRecyclerView(){
-        // set up adapter here
-
-        /*AppAdapter reservationAdapter = new
-        rcv.setAdapter(reservationAdapter);*/
-    }
-
-    // click on icon to start sreach
-    /*private void setupIconClick() {
-        //set up search icon click
-        ImageView iconSearch = findViewById(R.id.iconSearch);
-        iconSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                filterByName();
-            }
-        });
-    }*/
 
     private void setupNavBottom() {
         btv = findViewById(R.id.bottom_nav);
