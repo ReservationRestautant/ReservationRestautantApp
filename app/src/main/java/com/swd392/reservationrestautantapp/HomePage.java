@@ -46,8 +46,8 @@ public class HomePage extends AppCompatActivity {
                     System.out.println("btv_home_page");
                     startActivity(new Intent(HomePage.this, HomePage.class));
                 } else if(item.getItemId() == R.id.ac_history){
-                    //System.out.println("btv_ac_search_click");
-                    //startActivity(new Intent(HomePage.this, [...].class));
+                    System.out.println("btv_ac_search_click");
+                    startActivity(new Intent(HomePage.this, History.class));
                 }else if(item.getItemId() == R.id.ac_user) {
                     System.out.println("btv_ac_favorite_click");
                     startActivity(new Intent(HomePage.this, ProfileActivity.class));

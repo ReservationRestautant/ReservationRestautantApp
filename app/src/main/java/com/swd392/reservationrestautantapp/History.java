@@ -39,7 +39,7 @@ public class History extends AppCompatActivity {
     List<Reservation> list;
 
     // Uid of current user by Shared Preferences
-    int Uid = 0; /*getResources().getInteger(R.integer.[ Uid of current user ]);*/
+    int Uid = 1; /*getResources().getInteger(R.integer.[ Uid of current user ]);*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +48,7 @@ public class History extends AppCompatActivity {
 
         // get current user id via sharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences("MY_APP", Context.MODE_PRIVATE);	//"MY_APP": chỉ là cái tên của Shared preference;
-        Uid = sharedPreferences.getInt("Key_User", 0);
+        //Uid = sharedPreferences.getInt("Key_User", 0);
 
         // set up bottom menu
         setupNavBottom();

@@ -32,7 +32,7 @@ public interface ApiService {
 
     //tạo retrofit từ interface class + link api
     ApiService apiService = new Retrofit.Builder()
-            .baseUrl("http://192.168.1.12:8080/")
+            .baseUrl("http://192.168.1.11:8080/")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .client(okBuilder.build())
             .build()
