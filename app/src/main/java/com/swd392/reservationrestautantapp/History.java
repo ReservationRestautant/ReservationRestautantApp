@@ -18,6 +18,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.swd392.reservationrestautantapp.ApiService.ApiService;
 import com.swd392.reservationrestautantapp.adapter.HistoryAdapter;
 import com.swd392.reservationrestautantapp.model.Reservation;
+import com.swd392.reservationrestautantapp.model.ReservationHistory;
 import com.swd392.reservationrestautantapp.model.ResponseObject;
 
 import java.util.ArrayList;
@@ -39,7 +40,7 @@ public class History extends AppCompatActivity {
     List<Reservation> list;
 
     // Uid of current user by Shared Preferences
-    int Uid = 1; /*getResources().getInteger(R.integer.[ Uid of current user ]);*/
+    int Uid = 3; /*getResources().getInteger(R.integer.[ Uid of current user ]);*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,15 +55,44 @@ public class History extends AppCompatActivity {
         setupNavBottom();
 
         // call api to get list of reservation by id of current user
-        callApiGetListReservation(Uid);
+        //callApiGetListReservation(Uid);
+        //call api
+        List<ReservationHistory> list1 = new ArrayList<>();
+        ApiService.apiService.getReservationById(Uid).enqueue(new Callback<ResponseObject<List<ReservationHistory>>>() {
+            @Override
+            public void onResponse(Call<ResponseObject<List<ReservationHistory>>> call, Response<ResponseObject<List<ReservationHistory>>> response) {
+                for (ReservationHistory r: response.body().getData()) {
+                    Log.e("HISTORY_ID_RESERVATION", String.valueOf(r.getId()));
+                    Log.e("HISTORY_DATE", r.getDate().toString());
+                    Log.e("HISTORY_NUMBER_GUEST", String.valueOf(r.getNumber_guest()));
+                    Log.e("HISTORY_PRICE", String.valueOf(r.getPrice()));
+                    //getStartTime getNumber_guest getPrice
+                    ReservationHistory obj = new ReservationHistory();
+                    obj.setStartTime(r.getStartTime());
+                    obj.setNumber_guest(r.getNumber_guest());
+                    obj.setPrice(r.getPrice());
+                    obj.setId(r.getId());
+                    list1.add(obj);
+                }
+                Log.e("TRACK", "list1 size: "+list1.size());
+                Log.e("TRACK", "list1 size now: "+list1.size());
+                HistoryAdapter historyadapter = new HistoryAdapter(list, History.this, list1);
+                rcv.setAdapter(historyadapter);
+            }
+            @Override
+            public void onFailure(Call<ResponseObject<List<ReservationHistory>>> call, Throwable t) {
+                Log.e("ERROR", "call api fail " + t);
+            }
+        });
+        //call api - end
+
+
 
         // setup recycler view
         rcv = findViewById(R.id.rcv_History);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 1);   //dạng cột và có 1 cột
         rcv.setLayoutManager(gridLayoutManager);
 
-        HistoryAdapter historyadapter = new HistoryAdapter(list, this);
-        rcv.setAdapter(historyadapter);
 
         //set up search icon click
         ImageView iconSearch = findViewById(R.id.iconSearch);
@@ -75,25 +105,25 @@ public class History extends AppCompatActivity {
 
     }
 
-    private void callApiGetListReservation(int uid){
-        list = new ArrayList<>();
-        ApiService.apiService.getReservationById(uid).enqueue(new Callback<ResponseObject<List<Reservation>>>() {
-            @Override
-            public void onResponse(Call<ResponseObject<List<Reservation>>> call, Response<ResponseObject<List<Reservation>>> response) {
-                for (Reservation r: response.body().getData()) {
-                    Log.e("ID_RESERVATION", String.valueOf(r.getId()));
-                    Log.e("DATE", r.getDate().toString());
-                    Log.e("NUMBER_GUEST", String.valueOf(r.getNumber_guest()));
-                    Log.e("PRICE", String.valueOf(r.getPrice()));
-                    list.add(r);
-                }
-            }
-            @Override
-            public void onFailure(Call<ResponseObject<List<Reservation>>> call, Throwable t) {
-                Log.e("ERROR", "call api fail");
-            }
-        });
-    }
+//    private void callApiGetListReservation(int uid){
+//        list = new ArrayList<>();
+//        ApiService.apiService.getReservationById(uid).enqueue(new Callback<ResponseObject<List<Reservation>>>() {
+//            @Override
+//            public void onResponse(Call<ResponseObject<List<Reservation>>> call, Response<ResponseObject<List<Reservation>>> response) {
+//                for (Reservation r: response.body().getData()) {
+//                    Log.e("ID_RESERVATION", String.valueOf(r.getId()));
+//                    Log.e("DATE", r.getDate().toString());
+//                    Log.e("NUMBER_GUEST", String.valueOf(r.getNumber_guest()));
+//                    Log.e("PRICE", String.valueOf(r.getPrice()));
+//                    list.add(r);
+//                }
+//            }
+//            @Override
+//            public void onFailure(Call<ResponseObject<List<Reservation>>> call, Throwable t) {
+//                Log.e("ERROR", "call api fail");
+//            }
+//        });
+//    }
 
     private void setupNavBottom() {
         btv = findViewById(R.id.bottom_nav);

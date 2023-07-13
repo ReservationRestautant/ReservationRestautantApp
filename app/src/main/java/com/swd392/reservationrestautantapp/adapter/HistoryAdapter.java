@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.swd392.reservationrestautantapp.R;
 import com.swd392.reservationrestautantapp.model.Reservation;
+import com.swd392.reservationrestautantapp.model.ReservationHistory;
 
 import org.w3c.dom.Text;
 
@@ -19,15 +20,17 @@ import java.util.List;
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder> {
 
     private List<Reservation> list;
+    private List<ReservationHistory> list1;
 
     private Context context;
 
     public HistoryAdapter() {
     }
 
-    public HistoryAdapter(List<Reservation> list, Context context) {
+    public HistoryAdapter(List<Reservation> list, Context context, List<ReservationHistory> list1) {
         this.list = list;
         this.context = context;
+        this.list1 = list1;
     }
 
     // create and start View Holder but not fill data in
@@ -41,18 +44,18 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
     // find and fill data to view
     @Override
     public void onBindViewHolder(@NonNull HistoryViewHolder holder, int position) {
-        Reservation r = list.get(position);
+        ReservationHistory r = list1.get(position);
         if (r == null) return;
 
         holder.timeBook.setText(r.getStartTime().toString());
-        holder.numberPeople.setText(r.getNumber_guest());
-        holder.priceDeposit.setText("Deposit: " + r.getPrice());
+        holder.numberPeople.setText(r.getNumber_guest() + "");
+        holder.priceDeposit.setText("Deposit: " + r.getPrice() + "");
     }
 
     @Override
     public int getItemCount() {
-        if(list != null){
-            return  list.size();
+        if(list1 != null){
+            return  list1.size();
         }
         return 0;
     }
