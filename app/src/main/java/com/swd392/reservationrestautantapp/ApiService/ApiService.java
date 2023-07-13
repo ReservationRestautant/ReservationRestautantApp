@@ -2,6 +2,7 @@ package com.swd392.reservationrestautantapp.ApiService;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.swd392.reservationrestautantapp.model.Reservation;
 import com.swd392.reservationrestautantapp.model.ResponseObject;
 import com.swd392.reservationrestautantapp.model.UserSystem;
 
@@ -35,7 +36,7 @@ public interface ApiService {
 
     //tạo retrofit từ interface class + link api
     ApiService apiService = new Retrofit.Builder()
-            .baseUrl("http://172.18.208.1:8080/")
+            .baseUrl("http://192.168.1.11:8080/")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .client(okBuilder.build())
             .build()
@@ -44,6 +45,9 @@ public interface ApiService {
     @GET("api/Customer")
     Call<ResponseObject<List<UserSystem>>> getAllUser();
 
+    @GET("api/Reservation/history")
+    Call<ResponseObject<List<Reservation>>> getReservationById(@Query("Userid") int uid);
+  
     @POST("api/User/Registration")
     Call<ResponseObject<List<UserSystem>>> createUser(@Body UserSystem userSystem);
 

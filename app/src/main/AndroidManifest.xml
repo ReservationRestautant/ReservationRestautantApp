@@ -24,7 +24,8 @@
             android:exported="false"></activity>
         <activity
             android:name=".History"
-            android:exported="false" />
+            android:exported="false" >
+        </activity>
         <activity
             android:name=".EditProfileActivity"
             android:exported="false" />
