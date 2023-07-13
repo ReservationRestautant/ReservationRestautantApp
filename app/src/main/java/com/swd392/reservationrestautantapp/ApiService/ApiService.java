@@ -3,6 +3,7 @@ package com.swd392.reservationrestautantapp.ApiService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.swd392.reservationrestautantapp.model.ReservationDTO;
+import com.swd392.reservationrestautantapp.model.Reservation;
 import com.swd392.reservationrestautantapp.model.ResponseObject;
 import com.swd392.reservationrestautantapp.model.UserSystem;
 
@@ -15,8 +16,11 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface ApiService {
     //ghi log req and response bằng okhttp3 - ở dưới có hướng dẫn add gradle
@@ -33,7 +37,7 @@ public interface ApiService {
 
     //tạo retrofit từ interface class + link api
     ApiService apiService = new Retrofit.Builder()
-            .baseUrl("http://172.18.208.1:8080/")
+            .baseUrl("http://192.168.1.11:8080/")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .client(okBuilder.build())
             .build()
@@ -44,4 +48,21 @@ public interface ApiService {
 
     @POST("api/Reservation?discount=0")
     Call<ResponseObject<Object>> booking(@Body ReservationDTO reservationDTO);
+  
+    @GET("api/Reservation/history")
+    Call<ResponseObject<List<Reservation>>> getReservationById(@Query("Userid") int uid);
+  
+    @POST("api/User/Registration")
+    Call<ResponseObject<List<UserSystem>>> createUser(@Body UserSystem userSystem);
+
+    @POST("api/User/GetUserData")
+    Call<ResponseObject<UserSystem>> getUserData(@Query("phone") String phone);
+
+    @FormUrlEncoded
+    @POST("api/User/UpdateProfile")
+    Call<ResponseObject> updateProfile(
+            @Field("fullName") String fullName,
+            @Field("phone") String phone,
+            @Field("password") String password
+    );
 }
