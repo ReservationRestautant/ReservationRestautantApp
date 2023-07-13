@@ -23,7 +23,7 @@ public class Payment extends AppCompatActivity {
         Intent intent = getIntent();
         String moneypaystr = intent.getStringExtra("MONEYPAY");
         //default data to TEST
-        if(moneypaystr == null) moneypaystr = "1000000";
+        if(moneypaystr == null) moneypaystr = "...";
 
         //set money pay
         moneypay.setText("Money to pay: " + moneypaystr + " vnđ");

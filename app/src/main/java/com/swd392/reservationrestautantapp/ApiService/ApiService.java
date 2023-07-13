@@ -2,6 +2,7 @@ package com.swd392.reservationrestautantapp.ApiService;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.swd392.reservationrestautantapp.model.ReservationDTO;
 import com.swd392.reservationrestautantapp.model.Reservation;
 import com.swd392.reservationrestautantapp.model.ResponseObject;
 import com.swd392.reservationrestautantapp.model.UserSystem;
@@ -45,6 +46,9 @@ public interface ApiService {
     @GET("api/Customer")
     Call<ResponseObject<List<UserSystem>>> getAllUser();
 
+    @POST("api/Reservation?discount=0")
+    Call<ResponseObject<Object>> booking(@Body ReservationDTO reservationDTO);
+  
     @GET("api/Reservation/history")
     Call<ResponseObject<List<Reservation>>> getReservationById(@Query("Userid") int uid);
   

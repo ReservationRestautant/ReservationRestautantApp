@@ -103,9 +103,10 @@ public class Booking extends AppCompatActivity {
                 try{
                     guest = Integer.parseInt(numbergest.getText().toString());
                     if(guest <= 0) throw new Exception();
+                    if(guest > 24) throw new Exception();
                 }catch (Exception ex){
                     check = false;
-                    Toast.makeText(Booking.this, "Number guest must number bigger 0", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Booking.this, "Number guest must number bigger 0 and not more 24 peoples", Toast.LENGTH_SHORT).show();
                 }
                 Log.e("BOOKING_INFO", "nunber guesst: " + guest);
                 editor.putString("BOOKING_INFO_NUMBER_GUEST", guest + "");
