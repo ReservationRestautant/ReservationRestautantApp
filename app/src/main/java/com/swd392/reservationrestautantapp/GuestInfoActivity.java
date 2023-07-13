@@ -12,7 +12,7 @@ import android.widget.EditText;
 
 public class GuestInfoActivity extends AppCompatActivity {
 
-    private static final String PREFS_NAME = "MyPrefs";
+    private static final String PREFS_NAME = "MY_APP";
     private static final String PREF_BOOKING_PHONE_GUEST_KEY = "BOOKING_INFO_PHONE_GUEST";
 
     EditText guestFullname, guestPhone;

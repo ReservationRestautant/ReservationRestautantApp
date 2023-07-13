@@ -23,7 +23,7 @@ public class LoginActivity extends AppCompatActivity {
 
     Button signupbtn, forgotpasswordButton, loginButton;
 
-    private static final String PREFS_NAME = "MyPrefs";
+    private static final String PREFS_NAME = "MY_APP";
     private static final String PREF_ID_KEY = "id";
     private static final String PREF_PHONE_KEY = "phone";
     private static final String PREF_BOOKING_PHONE_KEY = "BOOKING_INFO_PHONE_CUS";
