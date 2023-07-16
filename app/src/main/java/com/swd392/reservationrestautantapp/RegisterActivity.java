@@ -92,6 +92,9 @@ public class RegisterActivity extends AppCompatActivity {
                         for (UserSystem userSystem : response.body().getData()) {
                             Log.d("User Fields", "Name: " + userSystem.getName());
                             Log.d("User Fields", "Phone: " + userSystem.getPhone());
+                            // Registration successful, navigate to LoginActivity
+                            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                            startActivity(intent);
                         }
                     }
 
@@ -100,10 +103,6 @@ public class RegisterActivity extends AppCompatActivity {
                         Log.e("ERROR", "call api fail");
                     }
                 });
-
-                // Registration successful, navigate to LoginActivity
-                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                startActivity(intent);
                 finish(); // Optional: If you want to close the RegisterActivity
             }
 
@@ -119,9 +118,9 @@ public class RegisterActivity extends AppCompatActivity {
 
             private boolean isValidPassword(String password) {
                 // Check if password matches the required criteria
-                // Minimum length is 8 characters, maximum length is 15 characters
+                // Minimum length is 8 characters, maximum length is 20 characters
                 // It must contain at least 1 capital letter, 1 number, and 1 special character
-                String regex = "^(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=])(?=\\S+$).{8,15}$";
+                String regex = "^(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=])(?=\\S+$).{8,20}$";
                 return password.matches(regex);
             }
         });

@@ -14,6 +14,7 @@ public class GuestInfoActivity extends AppCompatActivity {
 
     private static final String PREFS_NAME = "MY_APP";
     private static final String PREF_BOOKING_PHONE_GUEST_KEY = "BOOKING_INFO_PHONE_GUEST";
+    private static final String PREF_BOOKING_INFO_PHONE_CUS_KEY = "BOOKING_INFO_PHONE_CUS";
 
     EditText guestFullname, guestPhone;
 
@@ -36,6 +37,10 @@ public class GuestInfoActivity extends AppCompatActivity {
 
                 // Save the phone number into SharedPreferences
                 saveGuestPhone(phone);
+
+                // Registration successful, navigate to LoginActivity
+                Intent intent = new Intent(GuestInfoActivity.this, HomePage.class);
+                startActivity(intent);
             }
 
             // Dùng cái này để lấy sđt guest khi cần
@@ -48,6 +53,7 @@ public class GuestInfoActivity extends AppCompatActivity {
 
                 // Save the phone number into SharedPreferences
                 editor.putString(PREF_BOOKING_PHONE_GUEST_KEY, phone);
+                editor.putString(PREF_BOOKING_INFO_PHONE_CUS_KEY, "0000000000");
 
                 editor.apply();
             }

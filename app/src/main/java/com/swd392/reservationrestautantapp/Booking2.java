@@ -77,11 +77,18 @@ public class Booking2 extends AppCompatActivity {
                 String phoneguest = sharedPreferences.getString("BOOKING_INFO_PHONE_GUEST", "");
                 String desciption = guestnote.getText().toString();
 
-                //test fake data phone
-                phonecus = "0000000000";
-//                phonecus = "0971724708";
-                phoneguest = "0971799999";
-                //end test fake data phone
+
+                phonecus = sharedPreferences.getString("BOOKING_INFO_PHONE_CUS", "");
+                if(phonecus.equals("0000000000")){
+                    //guest
+                    phoneguest = sharedPreferences.getString("BOOKING_INFO_PHONE_GUEST", "");
+                }
+
+//                //test fake data phone
+//                phonecus = "0000000000";
+////                phonecus = "0971724708";
+//                phoneguest = "0971799999";
+//                //end test fake data phone
 
                 try {
                     getTimeBooking(time);

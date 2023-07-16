@@ -24,12 +24,8 @@
             android:exported="false"></activity>
         <activity
             android:name=".History"
-            android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="false" >
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".EditProfileActivity"
@@ -66,13 +62,15 @@
         <activity
             android:name=".OnBoard2"
             android:exported="false" />
-        <!--<activity
+        <activity
             android:name=".OnBoard"
-            android:exported="false">
-        </activity>
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>-->
+        </activity>
         <activity
             android:name=".LoginActivity"
             android:exported="false" />

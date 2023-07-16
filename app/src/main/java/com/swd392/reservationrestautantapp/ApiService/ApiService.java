@@ -54,10 +54,10 @@ public interface ApiService {
     //api/Reservation/history?Userid=2
     Call<ResponseObject<List<ReservationHistory>>> getReservationById(@Query("Userid") int Userid);
   
-    @POST("api/User/Registration")
+    @POST("api/Customer")
     Call<ResponseObject<List<UserSystem>>> createUser(@Body UserSystem userSystem);
 
-    @POST("api/User/GetUserData")
+    @GET("api/Customer/search")
     Call<ResponseObject<UserSystem>> getUserData(@Query("phone") String phone);
 
     @FormUrlEncoded

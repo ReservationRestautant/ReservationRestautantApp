@@ -30,6 +30,7 @@ import retrofit2.Response;
 
 public class History extends AppCompatActivity {
 
+    private static final String PREF_ID_KEY = "id";
     // menu
     BottomNavigationView btv;
 
@@ -40,7 +41,7 @@ public class History extends AppCompatActivity {
     List<Reservation> list;
 
     // Uid of current user by Shared Preferences
-    int Uid = 3; /*getResources().getInteger(R.integer.[ Uid of current user ]);*/
+    int Uid; /*getResources().getInteger(R.integer.[ Uid of current user ]);*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +50,7 @@ public class History extends AppCompatActivity {
 
         // get current user id via sharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences("MY_APP", Context.MODE_PRIVATE);	//"MY_APP": chỉ là cái tên của Shared preference;
-        //Uid = sharedPreferences.getInt("Key_User", 0);
+        Uid = sharedPreferences.getInt(PREF_ID_KEY, 0);
 
         // set up bottom menu
         setupNavBottom();
@@ -72,6 +73,7 @@ public class History extends AppCompatActivity {
                     obj.setNumber_guest(r.getNumber_guest());
                     obj.setPrice(r.getPrice());
                     obj.setId(r.getId());
+                    obj.setDate(r.getDate());
                     list1.add(obj);
                 }
                 Log.e("TRACK", "list1 size: "+list1.size());

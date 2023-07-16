@@ -15,6 +15,7 @@ import com.swd392.reservationrestautantapp.model.ReservationHistory;
 
 import org.w3c.dom.Text;
 
+import java.sql.Date;
 import java.util.List;
 
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder> {
@@ -47,7 +48,14 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
         ReservationHistory r = list1.get(position);
         if (r == null) return;
 
-        holder.timeBook.setText(r.getStartTime().toString());
+        //2023-07-18
+        String datestr1 = r.getDate().toString();
+        String day = datestr1.substring(8, 10);	//22
+        String month = datestr1.substring(5, 7);	//6
+        String year = datestr1.substring(0, 4);		//2001
+        String datestr = day + " th" + month + ", " + year;
+
+        holder.timeBook.setText(datestr + " - " + r.getStartTime().toString());
         holder.numberPeople.setText(r.getNumber_guest() + "");
         holder.priceDeposit.setText("Deposit: " + r.getPrice() + "");
     }

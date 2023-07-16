@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -26,6 +27,7 @@ public class Booking extends AppCompatActivity {
 
     // menu
     BottomNavigationView btv;
+    TextView textviewtimebooking;
     boolean cbtn710,cbtn1013,cbtn1316,cbtn1619,cbtn1922;
     Button btn710,btn1013,btn1316,btn1619,btn1922;
     String time;
@@ -54,6 +56,7 @@ public class Booking extends AppCompatActivity {
         calendarView = findViewById(R.id.calendarView);
 
         numbergest = findViewById(R.id.numbergest);
+        textviewtimebooking = findViewById(R.id.textviewtimebooking);
 
         //check click button
         cbtn710 = false;
@@ -106,7 +109,9 @@ public class Booking extends AppCompatActivity {
                     if(guest > 24) throw new Exception();
                 }catch (Exception ex){
                     check = false;
-                    Toast.makeText(Booking.this, "Number guest must number bigger 0 and not more 24 peoples", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(Booking.this, "Number guest must number bigger 0 and not more 24 peoples", Toast.LENGTH_SHORT).show();
+                    numbergest.setError("Number guest must number bigger 0 and not more 24 peoples");
+                    numbergest.requestFocus();
                 }
                 Log.e("BOOKING_INFO", "nunber guesst: " + guest);
                 editor.putString("BOOKING_INFO_NUMBER_GUEST", guest + "");
@@ -114,7 +119,9 @@ public class Booking extends AppCompatActivity {
 
                 if(time == null){   //check time
                     check = false;
-                    Toast.makeText(Booking.this, "Please chose time", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(Booking.this, "", Toast.LENGTH_SHORT).show();
+                    textviewtimebooking.setError("Please chose time");
+                    textviewtimebooking.requestFocus();
                 }
                 Log.e("BOOKING_INFO", "time: " + time);
                 editor.putString("BOOKING_INFO_TIME", time);

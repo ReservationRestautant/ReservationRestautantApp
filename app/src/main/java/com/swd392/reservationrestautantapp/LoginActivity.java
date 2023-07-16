@@ -60,6 +60,10 @@ public class LoginActivity extends AppCompatActivity {
 
                                 // Save id and phone into SharedPreferences
                                 saveUserData(user.getId(), user.getPhone());
+
+                                // Registration successful, navigate to LoginActivity
+                                Intent intent = new Intent(LoginActivity.this, HomePage.class);
+                                startActivity(intent);
                             } else {
                                 Log.e("ERROR", "Login fail");
                             }
@@ -91,7 +95,8 @@ public class LoginActivity extends AppCompatActivity {
                 // Implement your logic to check if the account exists
                 // Return true if the account exists, otherwise return false
                 // Example:
-                return phone.equals("example") && password.equals("password");
+//                return phone.equals("example") && password.equals("password");
+                return phone.equals("0990089097") && password.equals("1");    //test data
             }
         });
 
