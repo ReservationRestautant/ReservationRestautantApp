@@ -10,9 +10,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.swd392.reservationrestautantapp.ApiService.ApiService;
 import com.swd392.reservationrestautantapp.model.ResponseObject;
+import com.swd392.reservationrestautantapp.model.Spam;
 import com.swd392.reservationrestautantapp.model.UserSystem;
 
 import retrofit2.Call;
@@ -28,6 +30,8 @@ public class LoginActivity extends AppCompatActivity {
     private static final String PREF_PHONE_KEY = "phone";
     private static final String PREF_BOOKING_PHONE_KEY = "BOOKING_INFO_PHONE_CUS";
 
+    boolean check;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         signupbtn = findViewById(R.id.signupButton);
         forgotpasswordButton = findViewById(R.id.forgotpasswordButton);
         loginButton = findViewById(R.id.loginButton);
-
+        check = false;
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,35 +50,66 @@ public class LoginActivity extends AppCompatActivity {
                 String phone = phoneEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
 
-                // Check if the account exists
-                boolean isAccountExists = checkAccountExists(phone, password);
-
-                if (isAccountExists) {
-                    // Call the API to retrieve user data
-                    ApiService.apiService.getUserData(phone).enqueue(new Callback<ResponseObject<UserSystem>>() {
-                        @Override
-                        public void onResponse(Call<ResponseObject<UserSystem>> call, Response<ResponseObject<UserSystem>> response) {
-                            if (response.isSuccessful()) {
+                //check spam
+                ApiService.apiService.login(phone, password).enqueue(new Callback<ResponseObject<UserSystem>>() {
+                    @Override
+                    public void onResponse(Call<ResponseObject<UserSystem>> call, Response<ResponseObject<UserSystem>> response) {
+                        if(response.isSuccessful()){
+                            if(response.body().getData().getPhone().equals(phone) && response.body().getData().getPassword().equals(password)){
                                 ResponseObject<UserSystem> responseObject = response.body();
                                 UserSystem user = responseObject.getData();
+                                //check spam
+                                ApiService.apiService.spam(phone).enqueue(new Callback<ResponseObject<Spam>>() {
+                                    @Override
+                                    public void onResponse(Call<ResponseObject<Spam>> call, Response<ResponseObject<Spam>> response) {
+                                        if(response.isSuccessful()){
+                                            Spam spam = response.body().getData();
+                                            if(spam.isBlock() == false){
+                                                //có spam rồi, nhưng chưa bị block
+                                                // Save id and phone into SharedPreferences
+                                                saveUserData(user.getId(), user.getPhone());
 
-                                // Save id and phone into SharedPreferences
-                                saveUserData(user.getId(), user.getPhone());
+                                                // Registration successful, navigate to LoginActivity
+                                                Intent intent = new Intent(LoginActivity.this, HomePage.class);
+                                                startActivity(intent);
+                                            }else if(spam.isBlock() == true){
+                                                //có spam rồi, bị block rồi
+                                                Toast.makeText(LoginActivity.this, "Your accout is block until " + spam.getTimeUnBlock(), Toast.LENGTH_LONG).show();
+                                            }
+                                        }else {
+                                            //400 not found spam hay chu7a0 spam lần nào
+                                            // Save id and phone into SharedPreferences
+                                            saveUserData(user.getId(), user.getPhone());
 
-                                // Registration successful, navigate to LoginActivity
-                                Intent intent = new Intent(LoginActivity.this, HomePage.class);
-                                startActivity(intent);
-                            } else {
-                                Log.e("ERROR", "Login fail");
+                                            // Registration successful, navigate to LoginActivity
+                                            Intent intent = new Intent(LoginActivity.this, HomePage.class);
+                                            startActivity(intent);
+                                        }
+
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<ResponseObject<Spam>> call, Throwable t) {
+//                                    Toast.makeText(LoginActivity.this, "Some error, try again", Toast.LENGTH_LONG).show();
+                                        // Save id and phone into SharedPreferences
+                                        saveUserData(user.getId(), user.getPhone());
+
+                                        // Registration successful, navigate to LoginActivity
+                                        Intent intent = new Intent(LoginActivity.this, HomePage.class);
+                                        startActivity(intent);
+                                    }
+                                });
                             }
+                        }else{
+                            Toast.makeText(LoginActivity.this, "Phone or password incorrect.", Toast.LENGTH_SHORT).show();
                         }
+                    }
 
-                        @Override
-                        public void onFailure(Call<ResponseObject<UserSystem>> call, Throwable t) {
-                            Log.e("ERROR", "call api fail");
-                        }
-                    });
-                }
+                    @Override
+                    public void onFailure(Call<ResponseObject<UserSystem>> call, Throwable t) {
+                        Log.e("ERROR", t.getMessage());
+                    }
+                });
             }
 
             private void saveUserData(int id, String phone) {
@@ -96,7 +131,20 @@ public class LoginActivity extends AppCompatActivity {
                 // Return true if the account exists, otherwise return false
                 // Example:
 //                return phone.equals("example") && password.equals("password");
-                return phone.equals("0990089097") && password.equals("1");    //test data
+                ApiService.apiService.login(phone, password).enqueue(new Callback<ResponseObject<UserSystem>>() {
+                    @Override
+                    public void onResponse(Call<ResponseObject<UserSystem>> call, Response<ResponseObject<UserSystem>> response) {
+                        if(response.body().getData().getPhone().equals(phone) && response.body().getData().getPassword().equals(password)){
+                            check = true;
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseObject<UserSystem>> call, Throwable t) {
+                        Log.e("ERROR", t.getMessage());
+                    }
+                });
+                return check;
             }
         });
 

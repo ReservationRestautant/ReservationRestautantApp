@@ -3,7 +3,9 @@ package com.swd392.reservationrestautantapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,6 +19,19 @@ public class BookingFail extends AppCompatActivity {
     // menu
     BottomNavigationView btv;
     TextView textview3;
+
+    private static final String PREFS_NAME = "MY_APP";
+
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//        //xóa hết share reference
+//        SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+//        editor.clear();
+//        editor.commit();
+//    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

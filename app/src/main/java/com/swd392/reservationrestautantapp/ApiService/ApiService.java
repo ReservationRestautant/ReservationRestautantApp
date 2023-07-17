@@ -6,6 +6,7 @@ import com.swd392.reservationrestautantapp.model.ReservationDTO;
 import com.swd392.reservationrestautantapp.model.Reservation;
 import com.swd392.reservationrestautantapp.model.ReservationHistory;
 import com.swd392.reservationrestautantapp.model.ResponseObject;
+import com.swd392.reservationrestautantapp.model.Spam;
 import com.swd392.reservationrestautantapp.model.UserSystem;
 
 import java.util.List;
@@ -21,6 +22,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Query;
 
 public interface ApiService {
@@ -53,18 +55,24 @@ public interface ApiService {
     @GET("api/Reservation/history")
     //api/Reservation/history?Userid=2
     Call<ResponseObject<List<ReservationHistory>>> getReservationById(@Query("Userid") int Userid);
+
+    @GET("api/Reservation/detail")
+    //api/Reservation/history?Userid=2
+    Call<ResponseObject<ReservationHistory>> getdetailReservationById(@Query("id") int id);
   
     @POST("api/Customer")
     Call<ResponseObject<List<UserSystem>>> createUser(@Body UserSystem userSystem);
 
-    @GET("api/Customer/search")
-    Call<ResponseObject<UserSystem>> getUserData(@Query("phone") String phone);
+    @POST("api/Customer/login")
+    Call<ResponseObject<UserSystem>> login(@Query("phone") String phone,
+                                                 @Query("password") String password);
 
-    @FormUrlEncoded
-    @POST("api/User/UpdateProfile")
-    Call<ResponseObject> updateProfile(
-            @Field("fullName") String fullName,
-            @Field("phone") String phone,
-            @Field("password") String password
-    );
+    @GET("api/Spam/detail")
+    Call<ResponseObject<Spam>> spam(@Query("phone") String phone);
+
+    @GET("api/Customer/search")
+    Call<ResponseObject<UserSystem>> detail(@Query("phone") String phone);
+
+    @PUT("api/Customer?action=Update")
+    Call<ResponseObject<UserSystem>> updateProfile(@Body UserSystem userSystem);
 }

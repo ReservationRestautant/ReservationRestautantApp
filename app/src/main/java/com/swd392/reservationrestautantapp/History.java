@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,6 +32,7 @@ import retrofit2.Response;
 public class History extends AppCompatActivity {
 
     private static final String PREF_ID_KEY = "id";
+    private static final String PREFS_GUEST_ROLE = "GUEST";
     // menu
     BottomNavigationView btv;
 
@@ -42,7 +44,17 @@ public class History extends AppCompatActivity {
 
     // Uid of current user by Shared Preferences
     int Uid; /*getResources().getInteger(R.integer.[ Uid of current user ]);*/
+    private static final String PREFS_NAME = "MY_APP";
 
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//        //xóa hết share reference
+//        SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+//        editor.clear();
+//        editor.commit();
+//    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +63,11 @@ public class History extends AppCompatActivity {
         // get current user id via sharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences("MY_APP", Context.MODE_PRIVATE);	//"MY_APP": chỉ là cái tên của Shared preference;
         Uid = sharedPreferences.getInt(PREF_ID_KEY, 0);
+//        String guest_login = sharedPreferences.getString(PREFS_GUEST_ROLE, "");
+//        if(guest_login.equals("true")){
+//            Toast.makeText(History.this, "Not Allow", Toast.LENGTH_SHORT).show();
+//            startActivity(new Intent(History.this, HomePage.class));
+//        }
 
         // set up bottom menu
         setupNavBottom();
@@ -97,13 +114,13 @@ public class History extends AppCompatActivity {
 
 
         //set up search icon click
-        ImageView iconSearch = findViewById(R.id.iconSearch);
-        iconSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // some method
-            }
-        });
+//        ImageView iconSearch = findViewById(R.id.iconSearch);
+//        iconSearch.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // some method
+//            }
+//        });
 
     }
 
@@ -136,7 +153,13 @@ public class History extends AppCompatActivity {
                     System.out.println("btv_home_page");
                     startActivity(new Intent(History.this, HomePage.class));
                 } else if(item.getItemId() == R.id.ac_history){
-                    startActivity(new Intent(History.this, History.class));
+                    SharedPreferences sharedPreferences = getSharedPreferences("MY_APP", Context.MODE_PRIVATE);
+                    String guest_login = sharedPreferences.getString("GUEST", "");
+                    if(guest_login.equals("true")){
+                        Toast.makeText(History.this, "Not Allow", Toast.LENGTH_SHORT).show();
+                    }else {
+                        startActivity(new Intent(History.this, History.class));
+                    }
                 }else if(item.getItemId() == R.id.ac_user) {
                     startActivity(new Intent(History.this, ProfileActivity.class));
                 }

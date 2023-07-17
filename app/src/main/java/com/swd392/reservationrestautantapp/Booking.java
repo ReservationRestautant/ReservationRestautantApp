@@ -35,6 +35,18 @@ public class Booking extends AppCompatActivity {
     java.sql.Date datebooking;
     CalendarView calendarView;
     EditText numbergest;
+    private static final String PREFS_NAME = "MY_APP";
+
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//        //xóa hết share reference
+//        SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+//        editor.clear();
+//        editor.commit();
+//    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -291,8 +303,14 @@ public class Booking extends AppCompatActivity {
                     System.out.println("btv_home_page");
                     startActivity(new Intent(Booking.this, HomePage.class));
                 } else if(item.getItemId() == R.id.ac_history){
-                    System.out.println("btv_ac_search_click");
-                    startActivity(new Intent(Booking.this, History.class));
+                    SharedPreferences sharedPreferences = getSharedPreferences("MY_APP", Context.MODE_PRIVATE);
+                    String guest_login = sharedPreferences.getString("GUEST", "");
+                    if(guest_login.equals("true")){
+                        Toast.makeText(Booking.this, "Not Allow", Toast.LENGTH_SHORT).show();
+                    }else {
+                        System.out.println("btv_ac_search_click");
+                        startActivity(new Intent(Booking.this, History.class));
+                    }
                 }else if(item.getItemId() == R.id.ac_user) {
                     System.out.println("btv_ac_favorite_click");
                     startActivity(new Intent(Booking.this, ProfileActivity.class));

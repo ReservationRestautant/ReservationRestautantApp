@@ -1,14 +1,20 @@
 package com.swd392.reservationrestautantapp.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.swd392.reservationrestautantapp.BookingDetailUser;
+import com.swd392.reservationrestautantapp.History;
+import com.swd392.reservationrestautantapp.HomePage;
+import com.swd392.reservationrestautantapp.LoginActivity;
 import com.swd392.reservationrestautantapp.R;
 import com.swd392.reservationrestautantapp.model.Reservation;
 import com.swd392.reservationrestautantapp.model.ReservationHistory;
@@ -58,6 +64,15 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
         holder.timeBook.setText(datestr + " - " + r.getStartTime().toString());
         holder.numberPeople.setText(r.getNumber_guest() + "");
         holder.priceDeposit.setText("Deposit: " + r.getPrice() + "");
+
+        holder.itemEleRcv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, BookingDetailUser.class);
+                intent.putExtra("ID_BOOKING", r.getId());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -75,12 +90,14 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
         private TextView numberPeople;
 
         private TextView priceDeposit;
+        private CardView itemEleRcv;
 
         public HistoryViewHolder(@NonNull View itemView) {
             super(itemView);
             timeBook = itemView.findViewById(R.id.timeBook);
             numberPeople = itemView.findViewById(R.id.numberPeople);
             priceDeposit = itemView.findViewById(R.id.priceDeposit);
+            itemEleRcv = itemView.findViewById(R.id.itemEleRcv);
         }
     }
 
