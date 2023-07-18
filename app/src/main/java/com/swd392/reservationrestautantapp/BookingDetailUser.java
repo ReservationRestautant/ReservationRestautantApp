@@ -47,13 +47,15 @@ public class BookingDetailUser extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booking_detail_user);
-        
+
+        SharedPreferences sharedPreferences = getSharedPreferences("MY_APP", Context.MODE_PRIVATE);
+
         findbyIdEle();
         setupNavBottom();
         Intent intent = getIntent();
         //get reservation from api
         //test fake data
-        ApiService.apiService.getdetailReservationById(intent.getIntExtra("ID_BOOKING", 0)).enqueue(new Callback<ResponseObject<ReservationHistory>>() {
+        ApiService.apiService.getdetailReservationById(sharedPreferences.getString("TOKEN", "") , intent.getIntExtra("ID_BOOKING", 0)).enqueue(new Callback<ResponseObject<ReservationHistory>>() {
             @Override
             public void onResponse(Call<ResponseObject<ReservationHistory>> call, Response<ResponseObject<ReservationHistory>> response) {
                 if(response.isSuccessful()){

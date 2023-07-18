@@ -50,20 +50,20 @@ public class OnBoard extends AppCompatActivity {
             }
         });
 
-        //test call api
-        ApiService.apiService.getAllUser().enqueue(new Callback<ResponseObject<List<UserSystem>>>() {
-            @Override
-            public void onResponse(Call<ResponseObject<List<UserSystem>>> call, Response<ResponseObject<List<UserSystem>>> response) {
-                for (UserSystem user: response.body().getData()) {
-                    Log.e("USER", user.toString());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseObject<List<UserSystem>>> call, Throwable t) {
-                Log.e("USER", "call api fail");
-            }
-        });
+//        //test call api
+//        ApiService.apiService.getAllUser().enqueue(new Callback<ResponseObject<List<UserSystem>>>() {
+//            @Override
+//            public void onResponse(Call<ResponseObject<List<UserSystem>>> call, Response<ResponseObject<List<UserSystem>>> response) {
+//                for (UserSystem user: response.body().getData()) {
+//                    Log.e("USER", user.toString());
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResponseObject<List<UserSystem>>> call, Throwable t) {
+//                Log.e("USER", "call api fail");
+//            }
+//        });
 
     }
 }

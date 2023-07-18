@@ -2,6 +2,7 @@ package com.swd392.reservationrestautantapp.ApiService;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.swd392.reservationrestautantapp.model.DataLogin;
 import com.swd392.reservationrestautantapp.model.ReservationDTO;
 import com.swd392.reservationrestautantapp.model.Reservation;
 import com.swd392.reservationrestautantapp.model.ReservationHistory;
@@ -21,6 +22,7 @@ import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Query;
@@ -47,32 +49,32 @@ public interface ApiService {
             .create(ApiService.class);
 
     @GET("api/Customer")
-    Call<ResponseObject<List<UserSystem>>> getAllUser();
+    Call<ResponseObject<List<UserSystem>>> getAllUser(@Header("Authorization") String token);
 
     @POST("api/Reservation?discount=0")
     Call<ResponseObject<Object>> booking(@Body ReservationDTO reservationDTO);
   
     @GET("api/Reservation/history")
     //api/Reservation/history?Userid=2
-    Call<ResponseObject<List<ReservationHistory>>> getReservationById(@Query("Userid") int Userid);
+    Call<ResponseObject<List<ReservationHistory>>> getReservationById(@Header("Authorization") String token, @Query("Userid") int Userid);
 
     @GET("api/Reservation/detail")
     //api/Reservation/history?Userid=2
-    Call<ResponseObject<ReservationHistory>> getdetailReservationById(@Query("id") int id);
+    Call<ResponseObject<ReservationHistory>> getdetailReservationById(@Header("Authorization") String token, @Query("id") int id);
   
     @POST("api/Customer")
     Call<ResponseObject<List<UserSystem>>> createUser(@Body UserSystem userSystem);
 
-    @POST("api/Customer/login")
-    Call<ResponseObject<UserSystem>> login(@Query("phone") String phone,
-                                                 @Query("password") String password);
+    @POST("api/auth/login")
+    Call<ResponseObject<DataLogin>> login(@Query("phone") String phone,
+                                          @Query("password") String password);
 
     @GET("api/Spam/detail")
-    Call<ResponseObject<Spam>> spam(@Query("phone") String phone);
+    Call<ResponseObject<Spam>> spam(@Header("Authorization") String token, @Query("phone") String phone);
 
     @GET("api/Customer/search")
-    Call<ResponseObject<UserSystem>> detail(@Query("phone") String phone);
+    Call<ResponseObject<UserSystem>> detail(@Header("Authorization") String token, @Query("phone") String phone);
 
     @PUT("api/Customer?action=Update")
-    Call<ResponseObject<UserSystem>> updateProfile(@Body UserSystem userSystem);
+    Call<ResponseObject<UserSystem>> updateProfile(@Header("Authorization") String token, @Body UserSystem userSystem);
 }

@@ -33,6 +33,7 @@ public class History extends AppCompatActivity {
 
     private static final String PREF_ID_KEY = "id";
     private static final String PREFS_GUEST_ROLE = "GUEST";
+    private static final String PREF_TOKEN = "TOKEN";
     // menu
     BottomNavigationView btv;
 
@@ -76,7 +77,7 @@ public class History extends AppCompatActivity {
         //callApiGetListReservation(Uid);
         //call api
         List<ReservationHistory> list1 = new ArrayList<>();
-        ApiService.apiService.getReservationById(Uid).enqueue(new Callback<ResponseObject<List<ReservationHistory>>>() {
+        ApiService.apiService.getReservationById(sharedPreferences.getString(PREF_TOKEN, ""), Uid).enqueue(new Callback<ResponseObject<List<ReservationHistory>>>() {
             @Override
             public void onResponse(Call<ResponseObject<List<ReservationHistory>>> call, Response<ResponseObject<List<ReservationHistory>>> response) {
                 for (ReservationHistory r: response.body().getData()) {

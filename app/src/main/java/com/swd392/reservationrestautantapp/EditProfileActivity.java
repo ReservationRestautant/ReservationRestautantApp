@@ -54,7 +54,7 @@ public class EditProfileActivity extends AppCompatActivity {
         //map data ra trước
         SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         //get detial to map name in screen
-        ApiService.apiService.detail(sharedPreferences.getString(PREFS_PHONE, "")).enqueue(new Callback<ResponseObject<UserSystem>>() {
+        ApiService.apiService.detail(sharedPreferences.getString("TOKEN", ""), sharedPreferences.getString(PREFS_PHONE, "")).enqueue(new Callback<ResponseObject<UserSystem>>() {
             @Override
             public void onResponse(Call<ResponseObject<UserSystem>> call, Response<ResponseObject<UserSystem>> response) {
                 if(response.isSuccessful()){
@@ -107,8 +107,8 @@ public class EditProfileActivity extends AppCompatActivity {
                 }
 
                 //get user by phone
-                Call<ResponseObject<UserSystem>> call = ApiService.apiService.detail(sharedPreferences.getString(PREFS_PHONE, ""));
-                ApiService.apiService.detail(sharedPreferences.getString(PREFS_PHONE, "")).enqueue(new Callback<ResponseObject<UserSystem>>() {
+                Call<ResponseObject<UserSystem>> call = ApiService.apiService.detail(sharedPreferences.getString("TOKEN", ""),sharedPreferences.getString(PREFS_PHONE, ""));
+                ApiService.apiService.detail(sharedPreferences.getString("TOKEN", ""),sharedPreferences.getString(PREFS_PHONE, "")).enqueue(new Callback<ResponseObject<UserSystem>>() {
                     @Override
                     public void onResponse(Call<ResponseObject<UserSystem>> call, Response<ResponseObject<UserSystem>> response) {
                         if(response.isSuccessful()){
@@ -118,7 +118,7 @@ public class EditProfileActivity extends AppCompatActivity {
                             userSystem.setPassword(password);
 
                             // Call the API to update the profile
-                            ApiService.apiService.updateProfile(userSystem).enqueue(new Callback<ResponseObject<UserSystem>>() {
+                            ApiService.apiService.updateProfile(sharedPreferences.getString("TOKEN", ""),userSystem).enqueue(new Callback<ResponseObject<UserSystem>>() {
                                 @Override
                                 public void onResponse(Call<ResponseObject<UserSystem>> call, Response<ResponseObject<UserSystem>> response) {
                                     if (response.isSuccessful()) {
@@ -155,7 +155,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
             private void updateProfile(UserSystem userSystem) {
                 // Call the API to update the profile using the provided data
-                Call<ResponseObject<UserSystem>> call = ApiService.apiService.updateProfile(userSystem);
+                Call<ResponseObject<UserSystem>> call = ApiService.apiService.updateProfile(sharedPreferences.getString("TOKEN", ""),userSystem);
                 call.enqueue(new Callback<ResponseObject<UserSystem>>() {
                     @Override
                     public void onResponse(Call<ResponseObject<UserSystem>> call, Response<ResponseObject<UserSystem>> response) {

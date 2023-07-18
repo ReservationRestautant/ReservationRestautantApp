@@ -69,7 +69,7 @@ public class ProfileActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         guest = sharedPreferences.getString(PREFS_GUEST_ROLE, "");
         //get detial to map name in screen
-        ApiService.apiService.detail(sharedPreferences.getString(PREFS_PHONE, "")).enqueue(new Callback<ResponseObject<UserSystem>>() {
+        ApiService.apiService.detail(sharedPreferences.getString("TOKEN", ""),sharedPreferences.getString(PREFS_PHONE, "")).enqueue(new Callback<ResponseObject<UserSystem>>() {
             @Override
             public void onResponse(Call<ResponseObject<UserSystem>> call, Response<ResponseObject<UserSystem>> response) {
                 if(response.isSuccessful()){

@@ -12,7 +12,7 @@ import android.widget.TextView;
 public class ForgotPassword extends AppCompatActivity {
     Button SendButton;
     TextView loginLink, SignupLink;
-    EditText edt_phone;
+    EditText edt_phone, edt_oldpwd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,5 +52,6 @@ public class ForgotPassword extends AppCompatActivity {
         loginLink = findViewById(R.id.loginLink);
         SignupLink = findViewById(R.id.SignupLink);
         edt_phone = findViewById(R.id.edt_phone);
+        edt_oldpwd = findViewById(R.id.edt_oldpwd);
     }
 }

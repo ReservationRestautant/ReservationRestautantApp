@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.swd392.reservationrestautantapp.ApiService.ApiService;
+import com.swd392.reservationrestautantapp.model.DataLogin;
 import com.swd392.reservationrestautantapp.model.ResponseObject;
 import com.swd392.reservationrestautantapp.model.Spam;
 import com.swd392.reservationrestautantapp.model.UserSystem;
@@ -23,6 +24,7 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private static final String PREF_TOKEN = "TOKEN";
     Button signupbtn, forgotpasswordButton, loginButton;
 
     private static final String PREFS_NAME = "MY_APP";
@@ -51,15 +53,16 @@ public class LoginActivity extends AppCompatActivity {
                 String password = passwordEditText.getText().toString();
 
                 //check spam
-                ApiService.apiService.login(phone, password).enqueue(new Callback<ResponseObject<UserSystem>>() {
+                ApiService.apiService.login(phone, password).enqueue(new Callback<ResponseObject<DataLogin>>() {
                     @Override
-                    public void onResponse(Call<ResponseObject<UserSystem>> call, Response<ResponseObject<UserSystem>> response) {
+                    public void onResponse(Call<ResponseObject<DataLogin>> call, Response<ResponseObject<DataLogin>> response) {
                         if(response.isSuccessful()){
-                            if(response.body().getData().getPhone().equals(phone) && response.body().getData().getPassword().equals(password)){
-                                ResponseObject<UserSystem> responseObject = response.body();
-                                UserSystem user = responseObject.getData();
+                            if(response.body().getData().getUserSystem().getPhone().equals(phone) && response.body().getData().getUserSystem().getPassword().equals(password)){
+                                ResponseObject<DataLogin> responseObject = response.body();
+                                UserSystem user = responseObject.getData().getUserSystem();
+                                String token = responseObject.getData().getToken();
                                 //check spam
-                                ApiService.apiService.spam(phone).enqueue(new Callback<ResponseObject<Spam>>() {
+                                ApiService.apiService.spam(token, phone).enqueue(new Callback<ResponseObject<Spam>>() {
                                     @Override
                                     public void onResponse(Call<ResponseObject<Spam>> call, Response<ResponseObject<Spam>> response) {
                                         if(response.isSuccessful()){
@@ -67,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
                                             if(spam.isBlock() == false){
                                                 //có spam rồi, nhưng chưa bị block
                                                 // Save id and phone into SharedPreferences
-                                                saveUserData(user.getId(), user.getPhone());
+                                                saveUserData(user.getId(), user.getPhone(), token);
 
                                                 // Registration successful, navigate to LoginActivity
                                                 Intent intent = new Intent(LoginActivity.this, HomePage.class);
@@ -79,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
                                         }else {
                                             //400 not found spam hay chu7a0 spam lần nào
                                             // Save id and phone into SharedPreferences
-                                            saveUserData(user.getId(), user.getPhone());
+                                            saveUserData(user.getId(), user.getPhone(), token);
 
                                             // Registration successful, navigate to LoginActivity
                                             Intent intent = new Intent(LoginActivity.this, HomePage.class);
@@ -92,7 +95,7 @@ public class LoginActivity extends AppCompatActivity {
                                     public void onFailure(Call<ResponseObject<Spam>> call, Throwable t) {
 //                                    Toast.makeText(LoginActivity.this, "Some error, try again", Toast.LENGTH_LONG).show();
                                         // Save id and phone into SharedPreferences
-                                        saveUserData(user.getId(), user.getPhone());
+                                        saveUserData(user.getId(), user.getPhone(), token);
 
                                         // Registration successful, navigate to LoginActivity
                                         Intent intent = new Intent(LoginActivity.this, HomePage.class);
@@ -106,19 +109,20 @@ public class LoginActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(Call<ResponseObject<UserSystem>> call, Throwable t) {
+                    public void onFailure(Call<ResponseObject<DataLogin>> call, Throwable t) {
                         Log.e("ERROR", t.getMessage());
                     }
                 });
             }
 
-            private void saveUserData(int id, String phone) {
+            private void saveUserData(int id, String phone, String token) {
                 SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
 
                 // Save id and phone into SharedPreferences
                 editor.putInt(PREF_ID_KEY, id);
                 editor.putString(PREF_PHONE_KEY, phone);
+                editor.putString(PREF_TOKEN, token);
 
                 // Save phone into the BOOKING_INFO_PHONE_CUS variable
                 editor.putString(PREF_BOOKING_PHONE_KEY, phone);
@@ -126,26 +130,26 @@ public class LoginActivity extends AppCompatActivity {
                 editor.apply();
             }
 
-            private boolean checkAccountExists(String phone, String password) {
-                // Implement your logic to check if the account exists
-                // Return true if the account exists, otherwise return false
-                // Example:
-//                return phone.equals("example") && password.equals("password");
-                ApiService.apiService.login(phone, password).enqueue(new Callback<ResponseObject<UserSystem>>() {
-                    @Override
-                    public void onResponse(Call<ResponseObject<UserSystem>> call, Response<ResponseObject<UserSystem>> response) {
-                        if(response.body().getData().getPhone().equals(phone) && response.body().getData().getPassword().equals(password)){
-                            check = true;
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<ResponseObject<UserSystem>> call, Throwable t) {
-                        Log.e("ERROR", t.getMessage());
-                    }
-                });
-                return check;
-            }
+//            private boolean checkAccountExists(String phone, String password) {
+//                // Implement your logic to check if the account exists
+//                // Return true if the account exists, otherwise return false
+//                // Example:
+////                return phone.equals("example") && password.equals("password");
+//                ApiService.apiService.login(phone, password).enqueue(new Callback<ResponseObject<DataLogin>>() {
+//                    @Override
+//                    public void onResponse(Call<ResponseObject<DataLogin>> call, Response<ResponseObject<DataLogin>> response) {
+//                        if(response.body().getData().getPhone().equals(phone) && response.body().getData().getPassword().equals(password)){
+//                            check = true;
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<ResponseObject<DataLogin>> call, Throwable t) {
+//                        Log.e("ERROR", t.getMessage());
+//                    }
+//                });
+//                return check;
+//            }
         });
 
 
