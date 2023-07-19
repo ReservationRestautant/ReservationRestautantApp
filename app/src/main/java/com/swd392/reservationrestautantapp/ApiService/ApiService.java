@@ -70,7 +70,7 @@ public interface ApiService {
                                           @Query("password") String password);
 
     @GET("api/Spam/detail")
-    Call<ResponseObject<Spam>> spam(@Header("Authorization") String token, @Query("phone") String phone);
+    Call<ResponseObject<Spam>> spam(@Query("phone") String phone);
 
     @GET("api/Customer/search")
     Call<ResponseObject<UserSystem>> detail(@Header("Authorization") String token, @Query("phone") String phone);

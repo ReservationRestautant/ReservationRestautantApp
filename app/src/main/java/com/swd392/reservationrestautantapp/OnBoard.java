@@ -12,6 +12,7 @@ import android.widget.Button;
 
 import com.swd392.reservationrestautantapp.ApiService.ApiService;
 import com.swd392.reservationrestautantapp.model.ResponseObject;
+import com.swd392.reservationrestautantapp.model.Spam;
 import com.swd392.reservationrestautantapp.model.UserSystem;
 
 import java.util.List;
@@ -51,19 +52,22 @@ public class OnBoard extends AppCompatActivity {
         });
 
 //        //test call api
-//        ApiService.apiService.getAllUser().enqueue(new Callback<ResponseObject<List<UserSystem>>>() {
-//            @Override
-//            public void onResponse(Call<ResponseObject<List<UserSystem>>> call, Response<ResponseObject<List<UserSystem>>> response) {
-//                for (UserSystem user: response.body().getData()) {
-//                    Log.e("USER", user.toString());
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ResponseObject<List<UserSystem>>> call, Throwable t) {
-//                Log.e("USER", "call api fail");
-//            }
-//        });
+         ApiService.apiService.spam("0971724708").enqueue(new Callback<ResponseObject<Spam>>() {
+                                    @Override
+                                    public void onResponse(Call<ResponseObject<Spam>> call, Response<ResponseObject<Spam>> response) {
+                                        if(response.isSuccessful()){
+                                            Log.d("SEE", "onResponse: response success");
+                                        }else {
+                                            Log.d("SEE", "onResponse: response unsuccess");
+                                        }
+
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<ResponseObject<Spam>> call, Throwable t) {
+                                        Log.d("SEE", "onResponse: response unsuccess FAIL");
+                                    }
+                                });
 
     }
 }

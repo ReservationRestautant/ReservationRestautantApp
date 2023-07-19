@@ -31,7 +31,8 @@ public class LoginActivity extends AppCompatActivity {
     private static final String PREF_ID_KEY = "id";
     private static final String PREF_PHONE_KEY = "phone";
     private static final String PREF_BOOKING_PHONE_KEY = "BOOKING_INFO_PHONE_CUS";
-
+    private String phone1, token;
+    private int id;
     boolean check;
 
     @Override
@@ -43,6 +44,9 @@ public class LoginActivity extends AppCompatActivity {
         forgotpasswordButton = findViewById(R.id.forgotpasswordButton);
         loginButton = findViewById(R.id.loginButton);
         check = false;
+        id=1;
+        phone1 = "";
+        token = "";
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,12 +61,15 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<ResponseObject<DataLogin>> call, Response<ResponseObject<DataLogin>> response) {
                         if(response.isSuccessful()){
-                            if(response.body().getData().getUserSystem().getPhone().equals(phone) && response.body().getData().getUserSystem().getPassword().equals(password)){
+                            phone1 = response.body().getData().getUserSystem().getPhone();
+                            String pwd = response.body().getData().getUserSystem().getPassword();
+                            //if(phone1.equals(phone) && pwd.equals(password)){
                                 ResponseObject<DataLogin> responseObject = response.body();
                                 UserSystem user = responseObject.getData().getUserSystem();
                                 String token = responseObject.getData().getToken();
+
                                 //check spam
-                                ApiService.apiService.spam(token, phone).enqueue(new Callback<ResponseObject<Spam>>() {
+                                ApiService.apiService.spam(phone).enqueue(new Callback<ResponseObject<Spam>>() {
                                     @Override
                                     public void onResponse(Call<ResponseObject<Spam>> call, Response<ResponseObject<Spam>> response) {
                                         if(response.isSuccessful()){
@@ -73,8 +80,8 @@ public class LoginActivity extends AppCompatActivity {
                                                 saveUserData(user.getId(), user.getPhone(), token);
 
                                                 // Registration successful, navigate to LoginActivity
-                                                Intent intent = new Intent(LoginActivity.this, HomePage.class);
-                                                startActivity(intent);
+                                                Intent intent1 = new Intent(LoginActivity.this, HomePage.class);
+                                                startActivity(intent1);
                                             }else if(spam.isBlock() == true){
                                                 //có spam rồi, bị block rồi
                                                 Toast.makeText(LoginActivity.this, "Your accout is block until " + spam.getTimeUnBlock(), Toast.LENGTH_LONG).show();
@@ -83,10 +90,13 @@ public class LoginActivity extends AppCompatActivity {
                                             //400 not found spam hay chu7a0 spam lần nào
                                             // Save id and phone into SharedPreferences
                                             saveUserData(user.getId(), user.getPhone(), token);
+                                            Log.d("SEE", "onResponse: response unsuccess");
 
                                             // Registration successful, navigate to LoginActivity
-                                            Intent intent = new Intent(LoginActivity.this, HomePage.class);
-                                            startActivity(intent);
+                                            Intent intent2 = new Intent(LoginActivity.this, HomePage.class);
+                                            Log.d("SEE", "onResponse: response unsuccess - 1");
+                                            startActivity(intent2);
+                                            Log.d("SEE", "onResponse: response unsuccess-2");
                                         }
 
                                     }
@@ -98,11 +108,11 @@ public class LoginActivity extends AppCompatActivity {
                                         saveUserData(user.getId(), user.getPhone(), token);
 
                                         // Registration successful, navigate to LoginActivity
-                                        Intent intent = new Intent(LoginActivity.this, HomePage.class);
-                                        startActivity(intent);
+                                        Intent intent3 = new Intent(LoginActivity.this, HomePage.class);
+                                        startActivity(intent3);
                                     }
                                 });
-                            }
+                            //}
                         }else{
                             Toast.makeText(LoginActivity.this, "Phone or password incorrect.", Toast.LENGTH_SHORT).show();
                         }
@@ -111,6 +121,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(Call<ResponseObject<DataLogin>> call, Throwable t) {
                         Log.e("ERROR", t.getMessage());
+                        Toast.makeText(LoginActivity.this, "Phone or password incorrect.", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -122,7 +133,7 @@ public class LoginActivity extends AppCompatActivity {
                 // Save id and phone into SharedPreferences
                 editor.putInt(PREF_ID_KEY, id);
                 editor.putString(PREF_PHONE_KEY, phone);
-                editor.putString(PREF_TOKEN, token);
+                editor.putString(PREF_TOKEN, "Bearer " + token);
 
                 // Save phone into the BOOKING_INFO_PHONE_CUS variable
                 editor.putString(PREF_BOOKING_PHONE_KEY, phone);
@@ -151,11 +162,6 @@ public class LoginActivity extends AppCompatActivity {
 //                return check;
 //            }
         });
-
-
-
-
-
 
         signupbtn.setOnClickListener(new View.OnClickListener() {
             @Override

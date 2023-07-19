@@ -12,13 +12,19 @@ public class UserSystem {
 
     private String password;
 
-    private char role;      // 'a' -> admin
-                            // 'c' -> customer
-                            // 's' -> staff
+    private String role;
 
     private boolean status;     //true: active, false: inactive
 
     private List<Reservation> reservations;
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     public int getId() {
         return id;
@@ -52,13 +58,6 @@ public class UserSystem {
         this.password = password;
     }
 
-    public char getRole() {
-        return role;
-    }
-
-    public void setRole(char role) {
-        this.role = role;
-    }
 
     public boolean isStatus() {
         return status;

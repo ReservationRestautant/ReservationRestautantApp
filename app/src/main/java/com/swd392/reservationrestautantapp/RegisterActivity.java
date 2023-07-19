@@ -83,7 +83,7 @@ public class RegisterActivity extends AppCompatActivity {
                 user.setName(fullName);
                 user.setPhone(phone);
                 user.setPassword(password);
-                user.setRole('c'); // Set the default role to "c"
+                user.setRole("ROLE_CUSTOMER"); // Set the default role to "c"
 
                 //Call API
                 ApiService.apiService.createUser(user).enqueue(new Callback<ResponseObject<List<UserSystem>>>() {

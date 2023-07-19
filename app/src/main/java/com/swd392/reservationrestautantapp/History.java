@@ -64,6 +64,7 @@ public class History extends AppCompatActivity {
         // get current user id via sharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences("MY_APP", Context.MODE_PRIVATE);	//"MY_APP": chỉ là cái tên của Shared preference;
         Uid = sharedPreferences.getInt(PREF_ID_KEY, 0);
+        String token = sharedPreferences.getString(PREF_TOKEN, "");
 //        String guest_login = sharedPreferences.getString(PREFS_GUEST_ROLE, "");
 //        if(guest_login.equals("true")){
 //            Toast.makeText(History.this, "Not Allow", Toast.LENGTH_SHORT).show();
@@ -77,27 +78,32 @@ public class History extends AppCompatActivity {
         //callApiGetListReservation(Uid);
         //call api
         List<ReservationHistory> list1 = new ArrayList<>();
-        ApiService.apiService.getReservationById(sharedPreferences.getString(PREF_TOKEN, ""), Uid).enqueue(new Callback<ResponseObject<List<ReservationHistory>>>() {
+        ApiService.apiService.getReservationById(token, Uid).enqueue(new Callback<ResponseObject<List<ReservationHistory>>>() {
             @Override
             public void onResponse(Call<ResponseObject<List<ReservationHistory>>> call, Response<ResponseObject<List<ReservationHistory>>> response) {
-                for (ReservationHistory r: response.body().getData()) {
-                    Log.e("HISTORY_ID_RESERVATION", String.valueOf(r.getId()));
-                    Log.e("HISTORY_DATE", r.getDate().toString());
-                    Log.e("HISTORY_NUMBER_GUEST", String.valueOf(r.getNumber_guest()));
-                    Log.e("HISTORY_PRICE", String.valueOf(r.getPrice()));
-                    //getStartTime getNumber_guest getPrice
-                    ReservationHistory obj = new ReservationHistory();
-                    obj.setStartTime(r.getStartTime());
-                    obj.setNumber_guest(r.getNumber_guest());
-                    obj.setPrice(r.getPrice());
-                    obj.setId(r.getId());
-                    obj.setDate(r.getDate());
-                    list1.add(obj);
-                }
-                Log.e("TRACK", "list1 size: "+list1.size());
-                Log.e("TRACK", "list1 size now: "+list1.size());
-                HistoryAdapter historyadapter = new HistoryAdapter(list, History.this, list1);
-                rcv.setAdapter(historyadapter);
+               try{
+                   for (ReservationHistory r: response.body().getData()) {
+                       Log.e("HISTORY_ID_RESERVATION", String.valueOf(r.getId()));
+                       Log.e("HISTORY_DATE", r.getDate().toString());
+                       Log.e("HISTORY_NUMBER_GUEST", String.valueOf(r.getNumber_guest()));
+                       Log.e("HISTORY_PRICE", String.valueOf(r.getPrice()));
+                       //getStartTime getNumber_guest getPrice
+                       ReservationHistory obj = new ReservationHistory();
+                       obj.setStartTime(r.getStartTime());
+                       obj.setNumber_guest(r.getNumber_guest());
+                       obj.setPrice(r.getPrice());
+                       obj.setId(r.getId());
+                       obj.setDate(r.getDate());
+                       list1.add(obj);
+                   }
+                   Log.e("TRACK", "list1 size: "+list1.size());
+                   Log.e("TRACK", "list1 size now: "+list1.size());
+                   HistoryAdapter historyadapter = new HistoryAdapter(list, History.this, list1);
+                   rcv.setAdapter(historyadapter);
+               }catch (Exception ex){
+
+               }
+
             }
             @Override
             public void onFailure(Call<ResponseObject<List<ReservationHistory>>> call, Throwable t) {
